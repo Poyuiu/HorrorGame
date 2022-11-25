@@ -1,0 +1,14 @@
+HOW TO USE- 
+
+Prefab: 
+• Add player 
+• Add Game Manager 
+• Set the player variable with the player prefab (Used for singleton) 
+• Add Scan Manager 
+
+
+Disable/Enable Scan
+• Disable/Enable "Scanner" component on player
+
+Reset Particle
+• Scan Manager (Gameobject) -> Scan Manager (Component) -> InitScan()
