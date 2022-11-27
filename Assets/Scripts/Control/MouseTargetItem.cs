@@ -7,7 +7,9 @@ public class MouseTargetItem : MonoBehaviour {
     public Camera mCamera;
 
     private bool isTarget;
-
+    public bool isMouseTargetAwake { set; get; }
+    private enum targetItem { passwordDoor };
+    private targetItem nowTarget;
     private GameObject targetObject;
     private Renderer[] targetObjectRenderer;
 
@@ -15,9 +17,11 @@ public class MouseTargetItem : MonoBehaviour {
 
     void Start() {
         this.isTarget = false;
+        this.isMouseTargetAwake = true;
     }
     void Update() {
-
+        if (!this.isMouseTargetAwake)
+            return;
         RaycastHit hit;
         Ray ray = mCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -29,6 +33,7 @@ public class MouseTargetItem : MonoBehaviour {
                     if (this.isTarget)
                         break;
                     this.isTarget = true;
+                    this.nowTarget = targetItem.passwordDoor;
                     targetObject = GameObject.Find("doorPassword");
                     targetObjectRenderer = targetObject.GetComponentsInChildren<Renderer>();
                     foreach (Renderer it in targetObjectRenderer)
@@ -41,10 +46,21 @@ public class MouseTargetItem : MonoBehaviour {
         } else
             this.isTarget = false;
 
-        if (!this.isTarget) {
-            targetObjectRenderer = targetObject.GetComponentsInChildren<Renderer>();
-            foreach (Renderer it in targetObjectRenderer)
-                it.material.DisableKeyword("_EMISSION");
+        if (this.isTarget) {
+            if (Input.GetMouseButtonUp(0))
+                switch (this.nowTarget) {
+                    case targetItem.passwordDoor:
+                        this.targetObject.GetComponent<passwordDoor>().openCanvas();
+                        break;
+                    default:
+                        break;
+                }
+        } else {
+            if (targetObject != null) {
+                targetObjectRenderer = targetObject.GetComponentsInChildren<Renderer>();
+                foreach (Renderer it in targetObjectRenderer)
+                    it.material.DisableKeyword("_EMISSION");
+            }
         }
     }
 }
