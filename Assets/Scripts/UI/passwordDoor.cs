@@ -8,7 +8,7 @@ public class passwordDoor : MonoBehaviour {
     [SerializeField] private MouseTargetItem mouseTargetScript;
     private string password;
     private TMP_Text passwordText;
-    private const string passwordTextPrefix = "<mspace=1.53em>";
+    private const string passwordTextPrefix = "<mspace=1.47em>";
     private const string correctPassword = "1234";
     // Start is called before the first frame update
     void Start() {
