@@ -13,7 +13,7 @@ public class passwordDoor : MonoBehaviour {
 	private string password;
 	private TMP_Text passwordText;
 	private const string passwordTextPrefix = "<mspace=1.47em>";
-	private const string correctPassword = "1111";
+	private const string correctPassword = "9487";
 	private bool isDoorOpen;
 	private int rotateTimes;
 	// Start is called before the first frame update
