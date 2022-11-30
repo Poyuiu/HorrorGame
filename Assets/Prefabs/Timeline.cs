@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timeline : MonoBehaviour
 {
-    public float maxTime = 5f;
+    public float maxTime = 30f;
     private float timeRemaining;
     public Image timeLine;
 
