@@ -30,18 +30,25 @@ public class SceneLoader : MonoBehaviour
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
 
-        if (nowIsLight)
-        {
-            darkWorld.SetActive(true);
-            lightWorld.SetActive(false);
-            nowIsLight = false;
-        }
-        else
-        {
-            lightWorld.SetActive(true);
-            darkWorld.SetActive(false);
-            nowIsLight = true;
-        }
+        darkWorld.SetActive(true);
+        lightWorld.SetActive(false);
+        nowIsLight = false;
+
+        animator.SetTrigger("FadingStart");
+        yield return new WaitForSeconds(1f);
+
+        // In the Dark
+
+        yield return new WaitForSeconds(5f);
+
+        // End Dark
+
+        animator.SetTrigger("FadingStart");
+        yield return new WaitForSeconds(1f);
+
+        lightWorld.SetActive(true);
+        darkWorld.SetActive(false);
+        nowIsLight = true;
 
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
