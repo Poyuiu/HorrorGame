@@ -31,6 +31,7 @@ public class passwordDoor : MonoBehaviour {
 	public void openCanvas() {
 		if (this.isDoorOpen)
 			return;
+		Cursor.visible = true;
 		this.canvas.SetActive(true);
         this.FPSController.GetComponent<FPController>().enabled = false;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
@@ -38,6 +39,7 @@ public class passwordDoor : MonoBehaviour {
 	}
 	public void closeCanvas() {
 		this.password = "";
+		Cursor.visible = false;
         this.FPSController.GetComponent<FPController>().enabled = true;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = true;
 		this.canvas.SetActive(false);
