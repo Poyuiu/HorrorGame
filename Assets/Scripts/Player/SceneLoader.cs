@@ -1,3 +1,4 @@
+using LidarProject;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class SceneLoader : MonoBehaviour
     public Animator animator;
     public GameObject lightWorld;
     public GameObject darkWorld;
+    public GameObject player;
 
     private bool nowIsLight;
 
@@ -30,6 +32,7 @@ public class SceneLoader : MonoBehaviour
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
 
+        player.transform.Find("Particle Effect").gameObject.SetActive(true);
         darkWorld.SetActive(true);
         lightWorld.SetActive(false);
         nowIsLight = false;
@@ -46,6 +49,7 @@ public class SceneLoader : MonoBehaviour
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
 
+        player.transform.Find("Particle Effect").gameObject.SetActive(false);
         lightWorld.SetActive(true);
         darkWorld.SetActive(false);
         nowIsLight = true;
