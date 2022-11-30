@@ -6,21 +6,29 @@ public class passwordDoor : MonoBehaviour {
 	[SerializeField] private GameObject canvas;
 	[SerializeField] private GameObject passwordTextObj;
 	[SerializeField] private MouseTargetItem mouseTargetScript;
+	[SerializeField] private GameObject door1;
+	[SerializeField] private GameObject door2;
 	private string password;
 	private TMP_Text passwordText;
 	private const string passwordTextPrefix = "<mspace=1.47em>";
-	private const string correctPassword = "1234";
+	private const string correctPassword = "1111";
+	private bool isDoorOpen;
+	private int rotateTimes;
 	// Start is called before the first frame update
 	void Start() {
+		this.isDoorOpen = false;
 		this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
 		this.password = "";
 		this.passwordText.text = passwordTextPrefix;
+		this.rotateTimes = 0;
 	}
 	// Update is called once per frame
 	void Update() {
 		this.passwordText.text = passwordTextPrefix + this.password;
 	}
 	public void openCanvas() {
+		if (this.isDoorOpen)
+			return;
 		this.canvas.SetActive(true);
 		this.mouseTargetScript.isMouseTargetAwake = false;
 	}
@@ -44,6 +52,17 @@ public class passwordDoor : MonoBehaviour {
 		if (this.password != correctPassword)
 			return;
 		// open the door
+		this.isDoorOpen = true;
+		Destroy(this.gameObject.GetComponent<MeshRenderer>());
+		Destroy(this.canvas, 0.5f);
+		Destroy(this.gameObject, 2f);
 		this.closeCanvas();
+	}
+	void FixedUpdate() {
+		if (this.isDoorOpen && this.rotateTimes < 75) {
+			door1.transform.Rotate(Vector3.down);
+			door2.transform.Rotate(Vector3.up);
+			this.rotateTimes++;
+		}
 	}
 }
