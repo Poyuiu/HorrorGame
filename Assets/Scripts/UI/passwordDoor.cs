@@ -26,6 +26,7 @@ public class passwordDoor : MonoBehaviour {
     }
     public void closeCanvas() {
         this.canvas.SetActive(false);
+        this.password = "";
         this.mouseTargetScript.isMouseTargetAwake = true;
     }
     public void addZero() { if (this.password.Length < 4) this.password += "0"; }
