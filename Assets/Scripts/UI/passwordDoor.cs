@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class passwordDoor : MonoBehaviour {
 	[SerializeField] private GameObject canvas;
 	[SerializeField] private GameObject passwordTextObj;
 	[SerializeField] private MouseTargetItem mouseTargetScript;
 	[SerializeField] private GameObject door1;
 	[SerializeField] private GameObject door2;
+	[SerializeField] private GameObject FPSController;
 	private string password;
 	private TMP_Text passwordText;
 	private const string passwordTextPrefix = "<mspace=1.47em>";
@@ -30,10 +32,14 @@ public class passwordDoor : MonoBehaviour {
 		if (this.isDoorOpen)
 			return;
 		this.canvas.SetActive(true);
+        this.FPSController.GetComponent<FPController>().enabled = false;
+        this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
 		this.mouseTargetScript.isMouseTargetAwake = false;
 	}
 	public void closeCanvas() {
 		this.password = "";
+        this.FPSController.GetComponent<FPController>().enabled = true;
+        this.FPSController.GetComponent<LidarProject.Scanner>().enabled = true;
 		this.canvas.SetActive(false);
 		this.mouseTargetScript.isMouseTargetAwake = true;
 	}
