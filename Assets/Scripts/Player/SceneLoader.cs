@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
     public GameObject lightWorld;
     public GameObject darkWorld;
     public GameObject player;
+    public GameObject timeLine;
 
     private bool nowIsLight;
 
@@ -42,7 +43,8 @@ public class SceneLoader : MonoBehaviour
 
         // In the Dark
 
-        yield return new WaitForSeconds(5f);
+        Instantiate(timeLine);
+        yield return new WaitForSeconds(30f);
 
         // End Dark
 
