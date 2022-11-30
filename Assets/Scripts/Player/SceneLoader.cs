@@ -16,16 +16,16 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    IEnumerator ChangeScene()
+    public IEnumerator ChangeScene()
     {
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
         //SceneManager.LoadScene("Test", LoadSceneMode.Additive);
 
         // switch
-        Scene scene = SceneManager.GetActiveScene();
-        int kase = 1;
-        int switchIndex = kase - scene.buildIndex;
-        SceneManager.LoadScene(switchIndex);
+        //Scene scene = SceneManager.GetActiveScene();
+        //int kase = 1;
+        //int switchIndex = kase - scene.buildIndex;
+        //SceneManager.LoadScene(switchIndex);
     }
 }
