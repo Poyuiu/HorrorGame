@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public Animator animator;
+    public GameObject lightWorld;
+    public GameObject darkWorld;
+
+    private bool nowIsLight;
+
+    private void Start()
+    {
+        nowIsLight = true;
+    }
 
     private void Update()
     {
@@ -20,12 +29,21 @@ public class SceneLoader : MonoBehaviour
     {
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
-        //SceneManager.LoadScene("Test", LoadSceneMode.Additive);
 
-        // switch
-        //Scene scene = SceneManager.GetActiveScene();
-        //int kase = 1;
-        //int switchIndex = kase - scene.buildIndex;
-        //SceneManager.LoadScene(switchIndex);
+        if (nowIsLight)
+        {
+            darkWorld.SetActive(true);
+            lightWorld.SetActive(false);
+            nowIsLight = false;
+        }
+        else
+        {
+            lightWorld.SetActive(true);
+            darkWorld.SetActive(false);
+            nowIsLight = true;
+        }
+
+        animator.SetTrigger("FadingStart");
+        yield return new WaitForSeconds(1f);
     }
 }

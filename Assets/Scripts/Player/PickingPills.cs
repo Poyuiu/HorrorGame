@@ -31,6 +31,7 @@ public class PickingPills : MonoBehaviour
         {
             if (sanity == 0)
             {
+                sanity = 2;
                 StartCoroutine(loader.ChangeScene());
             }
             SanityEffect.enabled = false;
