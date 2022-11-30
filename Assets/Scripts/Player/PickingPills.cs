@@ -65,6 +65,7 @@ public class PickingPills : MonoBehaviour
                 Destroy(other.gameObject);
                 sanLock = false;
                 canPick = false;
+                hints_1.enabled = false;
             }
         }
     }
