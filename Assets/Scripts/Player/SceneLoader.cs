@@ -11,6 +11,9 @@ public class SceneLoader : MonoBehaviour
     public GameObject darkWorld;
     public GameObject player;
 
+    public GameObject flashlight;
+    public GameObject scanner;
+
     private bool nowIsLight;
 
     private void Start()
@@ -35,6 +38,8 @@ public class SceneLoader : MonoBehaviour
         player.transform.Find("Particle Effect").gameObject.SetActive(true);
         darkWorld.SetActive(true);
         lightWorld.SetActive(false);
+        flashlight.SetActive(false);
+        scanner.SetActive(true);
         nowIsLight = false;
 
         animator.SetTrigger("FadingStart");
@@ -52,6 +57,8 @@ public class SceneLoader : MonoBehaviour
         player.transform.Find("Particle Effect").gameObject.SetActive(false);
         lightWorld.SetActive(true);
         darkWorld.SetActive(false);
+        flashlight.SetActive(true);
+        scanner.SetActive(false);
         nowIsLight = true;
 
         animator.SetTrigger("FadingStart");

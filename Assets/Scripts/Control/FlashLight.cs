@@ -6,6 +6,6 @@ public class FlashLight : MonoBehaviour {
 	[SerializeField] private GameObject mLight;
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.F))
-			mLight.SetActive(!mLight.active);
+			mLight.SetActive(!mLight.activeSelf);
 	}
 }
