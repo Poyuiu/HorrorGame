@@ -14,6 +14,7 @@ public class SceneLoader : MonoBehaviour
 
     public GameObject flashlight;
     public GameObject scanner;
+    public GameObject pills;
 
     private bool nowIsLight;
 
@@ -65,5 +66,12 @@ public class SceneLoader : MonoBehaviour
 
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
+
+        Instantiate(pills,
+                    new Vector3(25.3419991f, -6.86999989f, -3.16000009f),
+                    Quaternion.identity);
+        Instantiate(pills,
+            new Vector3(31.6704674f, -2.19000006f, -7.05183172f),
+            Quaternion.identity);
     }
 }
