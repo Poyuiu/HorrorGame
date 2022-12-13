@@ -7,7 +7,6 @@ public class PickingPills : MonoBehaviour
     public Canvas hints_1;
     public SceneLoader loader;
     public Canvas SanityEffect;
-    public GameObject pill;
 
     private int sanity;
     private bool sanLock;
@@ -32,12 +31,6 @@ public class PickingPills : MonoBehaviour
             {
                 sanity = 2;
                 StartCoroutine(loader.ChangeScene());
-                Instantiate(pill,
-                    new Vector3(25.3419991f, -6.86999989f, -3.16000009f),
-                    Quaternion.identity);
-                Instantiate(pill,
-                    new Vector3(31.6704674f, -2.19000006f, -7.05183172f),
-                    Quaternion.identity);
             }
             SanityEffect.enabled = false;
         }

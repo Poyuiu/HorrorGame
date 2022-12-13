@@ -27,6 +27,10 @@ public class passwordDoor : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 		this.passwordText.text = passwordTextPrefix + this.password;
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
+			closeCanvas();
+        }
 	}
 	public void openCanvas() {
 		if (this.isDoorOpen)
