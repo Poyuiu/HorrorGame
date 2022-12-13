@@ -28,8 +28,8 @@ namespace Monster {
             this.mNavigation = this.gameObject.GetComponent<NavMeshAgent>();
             //this.audioController = this.gameObject.GetComponent<AudioSource>();
             //this.audioController.volume = 0.5f;
-            this.mNavigation.SetDestination(this.player.transform.position);
-            this.mNavigation.isStopped = true;
+            //this.mNavigation.SetDestination(this.player.transform.position);
+            //this.mNavigation.isStopped = true;
         }
 
         protected void stateUpdate() {
