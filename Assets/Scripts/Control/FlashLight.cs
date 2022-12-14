@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlashLight : MonoBehaviour {
 	[SerializeField] private GameObject mLight;
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
 			mLight.SetActive(!mLight.activeSelf);
 	}
 }
