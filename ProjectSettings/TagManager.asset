@@ -9,6 +9,8 @@ TagManager:
   - Global
   - Glass
   - Medicine
+  - Projectile
+  - Newspaper
   layers:
   - Default
   - TransparentFX

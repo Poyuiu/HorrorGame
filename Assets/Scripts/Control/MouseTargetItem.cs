@@ -8,7 +8,7 @@ public class MouseTargetItem : MonoBehaviour {
 
 	private bool isTarget;
 	public bool isMouseTargetAwake { set; get; }
-	private enum targetItem { passwordDoor };
+	private enum targetItem { passwordDoor, putNewspaper };
 	private targetItem nowTarget;
 	private GameObject targetObject;
 	private MeshRenderer targetObjectRenderer;
@@ -38,6 +38,42 @@ public class MouseTargetItem : MonoBehaviour {
 					targetObjectRenderer = targetObject.GetComponent<MeshRenderer>();
 					targetObjectRenderer.enabled = true;
 					break;
+				case "PutNewspaper1":
+					if (this.isTarget)
+						break;
+					this.isTarget = true;
+					this.nowTarget = targetItem.putNewspaper;
+					targetObject = GameObject.Find("PutNewspaper1");
+					targetObjectRenderer = targetObject.GetComponent<MeshRenderer>();
+					targetObjectRenderer.enabled = true;
+					break;
+				case "PutNewspaper2":
+					if (this.isTarget)
+						break;
+					this.isTarget = true;
+					this.nowTarget = targetItem.putNewspaper;
+					targetObject = GameObject.Find("PutNewspaper2");
+					targetObjectRenderer = targetObject.GetComponent<MeshRenderer>();
+					targetObjectRenderer.enabled = true;
+					break;
+				case "PutNewspaper3":
+					if (this.isTarget)
+						break;
+					this.isTarget = true;
+					this.nowTarget = targetItem.putNewspaper;
+					targetObject = GameObject.Find("PutNewspaper3");
+					targetObjectRenderer = targetObject.GetComponent<MeshRenderer>();
+					targetObjectRenderer.enabled = true;
+					break;
+				case "PutNewspaper4":
+					if (this.isTarget)
+						break;
+					this.isTarget = true;
+					this.nowTarget = targetItem.putNewspaper;
+					targetObject = GameObject.Find("PutNewspaper4");
+					targetObjectRenderer = targetObject.GetComponent<MeshRenderer>();
+					targetObjectRenderer.enabled = true;
+					break;
 				default:
 					this.isTarget = false;
 					break;
@@ -51,12 +87,16 @@ public class MouseTargetItem : MonoBehaviour {
 					case targetItem.passwordDoor:
 						this.targetObject.GetComponent<passwordDoor>().openCanvas();
 						break;
+					case targetItem.putNewspaper:
+						this.targetObject.GetComponent<PutNewspaper>().Put();
+						break;
 					default:
 						break;
 				}
 		} else {
 			if (targetObject != null) {
 				targetObjectRenderer.enabled = false;
+				targetObject = null;
 			}
 		}
 	}
