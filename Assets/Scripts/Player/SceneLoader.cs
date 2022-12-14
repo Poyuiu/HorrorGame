@@ -16,11 +16,11 @@ public class SceneLoader : MonoBehaviour
     public GameObject scanner;
     public GameObject pills;
 
-    private bool nowIsLight;
+    //private bool nowIsLight;
 
     private void Start()
     {
-        nowIsLight = true;
+        //nowIsLight = true;
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class SceneLoader : MonoBehaviour
         lightWorld.SetActive(false);
         flashlight.SetActive(false);
         scanner.SetActive(true);
-        nowIsLight = false;
+        //nowIsLight = false;
 
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
@@ -62,7 +62,7 @@ public class SceneLoader : MonoBehaviour
         darkWorld.SetActive(false);
         flashlight.SetActive(true);
         scanner.SetActive(false);
-        nowIsLight = true;
+        //nowIsLight = true;
 
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);

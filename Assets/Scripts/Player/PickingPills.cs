@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickingPills : MonoBehaviour
 {
-    public Canvas hints_1;
+    // public Canvas hints_1;
     public SceneLoader loader;
     public Canvas SanityEffect;
 
@@ -48,7 +48,9 @@ public class PickingPills : MonoBehaviour
         if (other.gameObject.CompareTag("Medicine"))
         {
             //Debug.Log("can pick");
-            hints_1.enabled = true;
+            // hints_1.enabled = true;
+            //Debug.Log(other.gameObject.transform.GetChild(2).name);
+            other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
             canPick = true;
             sanLock = false;
         }
@@ -63,7 +65,8 @@ public class PickingPills : MonoBehaviour
                 Destroy(other.gameObject);
                 sanLock = false;
                 canPick = false;
-                hints_1.enabled = false;
+                // hints_1.enabled = false;
+                other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
             }
         }
     }
@@ -74,7 +77,8 @@ public class PickingPills : MonoBehaviour
         {
             canPick = false;
             //Debug.Log("can't pick");
-            hints_1.enabled = false;
+            // hints_1.enabled = false;
+            other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
     }
 }
