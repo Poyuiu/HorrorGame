@@ -10,6 +10,8 @@ public class passwordDoor : MonoBehaviour
     [SerializeField] private MouseTargetItem mouseTargetScript;
     [SerializeField] private GameObject door1;
     [SerializeField] private GameObject door2;
+    [SerializeField] private GameObject dark_door1;
+    [SerializeField] private GameObject dark_door2;
     [SerializeField] private GameObject FPSController;
     [SerializeField] private List<GameObject> numberWithGrayFilter;
     private string password;
@@ -173,6 +175,8 @@ public class passwordDoor : MonoBehaviour
         {
             door1.transform.Rotate(Vector3.down);
             door2.transform.Rotate(Vector3.up);
+            dark_door1.transform.Rotate(Vector3.down);
+            dark_door2.transform.Rotate(Vector3.up);
             this.rotateTimes++;
         }
     }
