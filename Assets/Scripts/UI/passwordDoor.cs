@@ -6,14 +6,14 @@ using TMPro;
 public class passwordDoor : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
-    [SerializeField] private GameObject passwordTextObj;
+    //[SerializeField] private GameObject passwordTextObj;
     [SerializeField] private MouseTargetItem mouseTargetScript;
     [SerializeField] private GameObject door1;
     [SerializeField] private GameObject door2;
     [SerializeField] private GameObject FPSController;
     [SerializeField] private List<GameObject> numberWithGrayFilter;
     private string password;
-    private TMP_Text passwordText;
+    //private TMP_Text passwordText;
     private const string passwordTextPrefix = "<mspace=1.47em>";
     private const string correctPassword = "9487";
     private bool isDoorOpen;
@@ -23,9 +23,9 @@ public class passwordDoor : MonoBehaviour
     void Start()
     {
         this.isDoorOpen = false;
-        this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
+        //this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
         this.password = "";
-        this.passwordText.text = passwordTextPrefix;
+        //this.passwordText.text = passwordTextPrefix;
         this.rotateTimes = 0;
 
         Transform t = canvas.transform;
@@ -33,16 +33,16 @@ public class passwordDoor : MonoBehaviour
         {
             if (tr.CompareTag("Keypad Gray"))
             {
-                Debug.Log(tr.gameObject.name);
+                //Debug.Log(tr.gameObject.name);
                 numberWithGrayFilter.Add(tr.gameObject);
             }
         }
-        Debug.Log(numberWithGrayFilter.Count);
+        //Debug.Log(numberWithGrayFilter.Count);
     }
     // Update is called once per frame
     void Update()
     {
-        this.passwordText.text = passwordTextPrefix + this.password;
+        //this.passwordText.text = passwordTextPrefix + this.password;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             closeCanvas();
@@ -154,7 +154,12 @@ public class passwordDoor : MonoBehaviour
     public void submit()
     {
         if (this.password != correctPassword)
+        {
+            for (int i = 0; i < 10; i++)
+                numberWithGrayFilter[i].SetActive(false);
+            this.password = "";
             return;
+        }
         // open the door
         this.isDoorOpen = true;
         Destroy(this.gameObject.GetComponent<MeshRenderer>());
