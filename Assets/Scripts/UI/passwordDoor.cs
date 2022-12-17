@@ -33,11 +33,11 @@ public class passwordDoor : MonoBehaviour
         {
             if (tr.CompareTag("Keypad Gray"))
             {
-                //Debug.Log(tr.gameObject.name);
+                Debug.Log(tr.gameObject.name);
                 numberWithGrayFilter.Add(tr.gameObject);
             }
         }
-        //Debug.Log(numberWithGrayFilter.Count);
+        Debug.Log(numberWithGrayFilter.Count);
     }
     // Update is called once per frame
     void Update()
