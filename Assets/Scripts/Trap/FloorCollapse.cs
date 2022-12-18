@@ -9,6 +9,7 @@ public class FloorCollapse : MonoBehaviour {
     [SerializeField] private GameObject floorGroupDark1;
     [SerializeField] private GameObject floorGroupDark2;
     [SerializeField] private GameObject floorFracturePrefab;
+    [SerializeField] private GameObject floorAudioPrefab;
     private Mesh originalMesh;
     private const string fractureName = "floorFracture";
     void Start() {
@@ -39,11 +40,13 @@ public class FloorCollapse : MonoBehaviour {
 
             if (Random.value > 0.5f) {
                 newFloor = Instantiate(floorFracturePrefab, targetGroup[i].transform.position, targetGroup[i].transform.rotation, targetGroup[i].transform.parent.transform);
+                Instantiate(floorAudioPrefab, targetGroup[i].transform.position - new Vector3(1.25f, 0f, 1.25f), targetGroup[i].transform.rotation, targetGroup[i].transform.parent.transform);
                 Destroy(targetGroup[i]);
                 Destroy(targetGroupDark[i]);
             } else {
                 newFloor = Instantiate(floorFracturePrefab, targetGroup[i + 1].transform.position, targetGroup[i + 1].transform.rotation, targetGroup[i + 1].transform.parent
                 .transform);
+                Instantiate(floorAudioPrefab, targetGroup[i + 1].transform.position - new Vector3(1.25f, 0f, 1.25f), targetGroup[i + 1].transform.rotation, targetGroup[i + 1].transform.parent.transform);
                 Destroy(targetGroup[i + 1]);
                 Destroy(targetGroupDark[i + 1]);
             }
@@ -57,6 +60,7 @@ public class FloorCollapse : MonoBehaviour {
         }
         for (int i = 0; i < 8; i++) {
             GameObject newFloor = Instantiate(floorFracturePrefab, targetGroup[i].transform.position, targetGroup[i].transform.rotation, targetGroup[i].transform.parent.transform);
+            Instantiate(floorAudioPrefab, targetGroup[i].transform.position - new Vector3(1.25f, 0f, 1.25f), targetGroup[i].transform.rotation, targetGroup[i].transform.parent.transform);
             Destroy(targetGroup[i]);
             Destroy(targetGroupDark[i]);
             newFloorInit(newFloor);
