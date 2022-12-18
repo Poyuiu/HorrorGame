@@ -10,6 +10,7 @@ public class AllNewspaperPicked : MonoBehaviour
     public GameObject putNewspaper3;
     public GameObject putNewspaper4;
     public bool allPicked;
+    public GameObject door;
     void Start()
     {
         allPicked = false;
@@ -25,6 +26,7 @@ public class AllNewspaperPicked : MonoBehaviour
         putNewspaper4.GetComponent<PutNewspaper>().state == PutNewspaper.State.OnBulletin)
         {
             allPicked = true;
+            door.GetComponent<newspaperOpenDoor>().OpenDoor();
         }
         Debug.Log(allPicked);
     }

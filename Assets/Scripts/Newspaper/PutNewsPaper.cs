@@ -27,7 +27,7 @@ public class PutNewspaper : MonoBehaviour {
 			newspaper.transform.position = transform.position;
 			newspaper.transform.rotation = transform.rotation;
 			newspaper.transform.localScale = new Vector3(1.2f,0.02f,1.2f);
-			gameObject.SetActive(false);
+			gameObject.SetActive(false); 
 		}
 	}
 }
