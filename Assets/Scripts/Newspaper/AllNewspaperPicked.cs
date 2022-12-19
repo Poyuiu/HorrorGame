@@ -28,6 +28,5 @@ public class AllNewspaperPicked : MonoBehaviour
             allPicked = true;
             door.GetComponent<newspaperOpenDoor>().OpenDoor();
         }
-        Debug.Log(allPicked);
     }
 }

@@ -16,7 +16,6 @@ public class Timeline : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(timeRemaining);
         if (timeRemaining > 0f)
         {
             timeRemaining -= Time.deltaTime;

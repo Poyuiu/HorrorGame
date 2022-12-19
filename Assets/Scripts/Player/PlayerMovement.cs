@@ -93,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Medicine"))
         {
-            Debug.Log("pick");
             hints_1.enabled = true;
         }
     }
