@@ -13,6 +13,7 @@ public class Picking : MonoBehaviour
     private bool canPickPill;
     private bool canPickNewspaper;
     private bool goPickNewspaper;
+    public bool leverHint = false;
     private void Start()
     {
         sanity = 2;
@@ -66,6 +67,11 @@ public class Picking : MonoBehaviour
             other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
             canPickNewspaper = true;
         }
+        else if (other.gameObject.CompareTag("Lever")) {
+            if (leverHint) {
+                other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -105,6 +111,9 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
             canPickNewspaper = false;
+        }
+        else if (other.gameObject.CompareTag("Lever")) {
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }

@@ -53,12 +53,12 @@ public class leverDoorScript : MonoBehaviour
 
     private void FixedUpdate() // door is physical object
     {
-		if (this.isOpened && this.rotateTimes < 75) {
-			door1.transform.Rotate(Vector3.down);
-			door2.transform.Rotate(Vector3.up);
-			dark_door1.transform.Rotate(Vector3.down);
-			dark_door2.transform.Rotate(Vector3.up);
-			this.rotateTimes++;
-		}
+      if (this.isOpened && this.rotateTimes < 75) {
+        door1.transform.Rotate(Vector3.down);
+        door2.transform.Rotate(Vector3.up);
+        dark_door1.transform.Rotate(Vector3.down);
+        dark_door2.transform.Rotate(Vector3.up);
+        this.rotateTimes++;
+      }
     }
 }

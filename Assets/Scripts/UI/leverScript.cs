@@ -59,6 +59,7 @@ public class leverScript : MonoBehaviour
                     else anim.SetBool("LeverUp", false);
                 }
                 else anim.SetTrigger("ButtonPress");
+                Destroy(this.gameObject.transform.GetChild(0).gameObject);
             }
             else if (isValve && RampObject != null) // 3.valve
             {

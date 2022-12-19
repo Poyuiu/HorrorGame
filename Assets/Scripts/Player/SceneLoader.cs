@@ -15,12 +15,19 @@ public class SceneLoader : MonoBehaviour
     public GameObject flashlight;
     public GameObject scanner;
     public GameObject pills;
+    public DoorScript stage3Doors;
+    public Material stage3FloorMaterialBIG;
+    public MeshRenderer stage3FloorMeshRenderer;
+
+    public enum gameState {Stage1, Stage2, Stage3, Stage3_1};
+    public gameState curGameState;
 
     //private bool nowIsLight;
 
     private void Start()
     {
         //nowIsLight = true;
+        curGameState = gameState.Stage1;
     }
 
     private void Update()
@@ -48,9 +55,13 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // In the Dark
+        if (curGameState == gameState.Stage3) {
+            yield return new WaitUntil(() => curGameState == gameState.Stage3_1);
 
-        Instantiate(timeLine);
-        yield return new WaitForSeconds(30f);
+        } else {
+            Instantiate(timeLine);
+            yield return new WaitForSeconds(30f);
+        }
 
         // End Dark
 
@@ -74,4 +85,21 @@ public class SceneLoader : MonoBehaviour
             new Vector3(31.6704674f, -2.19000006f, -7.05183172f),
             Quaternion.identity);
     }
+
+    public void changeGameState(gameState newValue) {
+        if (newValue <= curGameState) return;
+        curGameState = newValue;
+        switch(curGameState) {
+            case gameState.Stage3: {
+                stage3Doors.closeDoor();
+                break;
+            }
+            case gameState.Stage3_1: {
+                player.GetComponent<Picking>().leverHint = true;
+                stage3FloorMeshRenderer.material = stage3FloorMaterialBIG;
+                break;
+            }
+        }
+    }
+
 }
