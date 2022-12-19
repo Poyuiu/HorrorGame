@@ -13,6 +13,7 @@ TagManager:
   - Projectile
   - Newspaper
   - Lever
+  - PlayerFake
   layers:
   - Default
   - TransparentFX
