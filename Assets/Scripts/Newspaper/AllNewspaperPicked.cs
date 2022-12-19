@@ -20,10 +20,10 @@ public class AllNewspaperPicked : MonoBehaviour
     void Update()
     {
         if (!allPicked &&
-        putNewspaper1.GetComponent<PutNewspaper>().state == PutNewspaper.State.OnBulletin &&
-        putNewspaper2.GetComponent<PutNewspaper>().state == PutNewspaper.State.OnBulletin &&
-        putNewspaper3.GetComponent<PutNewspaper>().state == PutNewspaper.State.OnBulletin &&
-        putNewspaper4.GetComponent<PutNewspaper>().state == PutNewspaper.State.OnBulletin)
+        putNewspaper1.GetComponent<PutNewsPaper>().state == PutNewsPaper.State.OnBulletin &&
+        putNewspaper2.GetComponent<PutNewsPaper>().state == PutNewsPaper.State.OnBulletin &&
+        putNewspaper3.GetComponent<PutNewsPaper>().state == PutNewsPaper.State.OnBulletin &&
+        putNewspaper4.GetComponent<PutNewsPaper>().state == PutNewsPaper.State.OnBulletin)
         {
             allPicked = true;
             door.GetComponent<newspaperOpenDoor>().OpenDoor();

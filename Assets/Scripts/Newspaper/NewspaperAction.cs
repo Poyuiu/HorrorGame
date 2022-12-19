@@ -19,7 +19,7 @@ public class NewspaperAction : MonoBehaviour
 
     public void Pick()
     {
-        putNewspaper.GetComponent<PutNewspaper>().Pick();
+        putNewspaper.GetComponent<PutNewsPaper>().Pick();
         gameObject.transform.GetChild(2).gameObject.SetActive(false);
     }
 }

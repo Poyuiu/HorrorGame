@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PutNewspaper : MonoBehaviour {
+public class PutNewsPaper : MonoBehaviour {
 	public GameObject newspaper;
 	public enum State { OnFloor, WithPlayer, OnBulletin };
 	public State state;

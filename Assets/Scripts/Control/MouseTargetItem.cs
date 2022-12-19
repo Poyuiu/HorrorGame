@@ -88,7 +88,7 @@ public class MouseTargetItem : MonoBehaviour {
 						this.targetObject.GetComponent<passwordDoor>().openCanvas();
 						break;
 					case targetItem.putNewspaper:
-						this.targetObject.GetComponent<PutNewspaper>().Put();
+						this.targetObject.GetComponent<PutNewsPaper>().Put();
 						break;
 					default:
 						break;
