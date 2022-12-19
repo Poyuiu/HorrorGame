@@ -67,6 +67,11 @@ public class passwordDoor : MonoBehaviour
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = true;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         this.canvas.SetActive(false);
+        StartCoroutine(ForMouseClose());
+    }
+    public IEnumerator ForMouseClose()
+    {
+        yield return new WaitForSeconds(0.2f);
         this.mouseTargetScript.isMouseTargetAwake = true;
     }
     public void addZero()
