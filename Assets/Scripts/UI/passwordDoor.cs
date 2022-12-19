@@ -61,6 +61,13 @@ public class passwordDoor : MonoBehaviour
     }
     public void closeCanvas()
     {
+        if (this.password != correctPassword)
+        {
+            for (int i = 0; i < 10; i++)
+                numberWithGrayFilter[i].SetActive(false);
+            this.password = "";
+            return;
+        }
         this.password = "";
         Cursor.visible = false;
         this.FPSController.GetComponent<FPController>().enabled = true;
