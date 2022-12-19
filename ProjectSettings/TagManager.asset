@@ -12,6 +12,7 @@ TagManager:
   - Keypad Gray
   - Projectile
   - Newspaper
+  - PlayerFake
   layers:
   - Default
   - TransparentFX

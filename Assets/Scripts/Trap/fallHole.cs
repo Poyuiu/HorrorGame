@@ -22,6 +22,7 @@ public class fallHole : MonoBehaviour {
         this.player.transform.rotation = Quaternion.Euler(Vector3.zero);
         yield return new WaitForSeconds(0.1f);
         this.zombie.GetComponent<AudioSource>().Play();
+        Cursor.visible = true;
         yield return new WaitForSeconds(0.4f);
         this.isEnter = true;
         yield return new WaitForSeconds(0.9f);
@@ -37,7 +38,7 @@ public class fallHole : MonoBehaviour {
             roomLight.intensity += 0.02f;
     }
     void OnTriggerEnter(Collider other) {
-        if (other.tag == "Player")
+        if (other.tag == "PlayerFake")
             StartCoroutine(this.fallHoleTeleport());
 
     }

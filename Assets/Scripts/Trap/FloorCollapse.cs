@@ -70,6 +70,7 @@ public class FloorCollapse : MonoBehaviour {
         newFloor.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         newFloor.transform.position = newFloor.transform.position - new Vector3(1.25f, 0f, 1.25f);
         newFloor.name = fractureName;
+        newFloor.layer = 6; 
         Mesh clonedMesh = new Mesh();
         clonedMesh.vertices = originalMesh.vertices;
         clonedMesh.triangles = originalMesh.triangles;
