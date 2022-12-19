@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class fallHole : MonoBehaviour {
+public class fallHole : MonoBehaviour
+{
     [SerializeField] private GameObject player;
     [SerializeField] private Animator zombieAnimator;
     [SerializeField] private GameObject retryCanvas;
     [SerializeField] private Light roomLight;
     [SerializeField] private GameObject zombie;
     private bool isEnter = false;
-    IEnumerator fallHoleTeleport() {
+    IEnumerator fallHoleTeleport()
+    {
         this.zombieAnimator.SetBool("isScare", true);
         this.player.GetComponent<FPController>().enabled = false;
         this.player.GetComponent<LidarProject.Scanner>().enabled = false;
@@ -26,23 +28,29 @@ public class fallHole : MonoBehaviour {
         this.isEnter = true;
         yield return new WaitForSeconds(0.9f);
         this.retryCanvas.SetActive(true);
+        Cursor.visible = true;
         Time.timeScale = 0;
     }
-    void Update() {
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.M))
             StartCoroutine(this.fallHoleTeleport());
     }
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         if (this.isEnter && roomLight.intensity < 0.6)
             roomLight.intensity += 0.02f;
     }
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter(Collider other)
+    {
         if (other.tag == "Player")
             StartCoroutine(this.fallHoleTeleport());
 
     }
-    public void reloadGame() {
+    public void reloadGame()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
+        Cursor.visible = false;
     }
 }
