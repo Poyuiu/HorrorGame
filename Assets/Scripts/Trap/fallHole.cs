@@ -12,9 +12,9 @@ public class fallHole : MonoBehaviour {
     private bool isEnter = false;
     IEnumerator fallHoleTeleport() {
         this.zombieAnimator.SetBool("isScare", true);
-        this.player.GetComponent<FPController>().enabled = false;
         this.player.GetComponent<LidarProject.Scanner>().enabled = false;
         yield return new WaitForSeconds(0.4f);
+        this.player.GetComponent<FPController>().enabled = false;
         for (int i = 0; i < this.player.transform.GetChild(0).childCount; i++)
             this.player.transform.GetChild(0).GetChild(i).gameObject.SetActive(false);
         this.player.transform.GetChild(0).rotation = new Quaternion(0, 0, 0, 0);
