@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPController : MonoBehaviour {
 
-	public float speed = 6f;
+	public float speed = 5f;
 	public float mouseSensitivity =5f;
 	public float jumpSpeed = 10f;
 
@@ -18,11 +18,12 @@ public class FPController : MonoBehaviour {
 	private bool is_sprinting;
 	private float defaultYpos;
 	private float headBobTimer;
-	private float walkBobSpeed = 14f;
-	private float sprintBobSpeed = 18f;
+	private float walkBobSpeed = 10f;
+	private float sprintBobSpeed = 19f;
 
-	public AudioSource AS_SFX;
-	public AudioClip footstepLeft, footstepRight;
+    public AudioSource AS_BGM_Footstep;
+    public AudioSource AS_Breath;
+    public AudioClip footstepLeft, footstepRight;
 	private bool footstepLeftHasPlayed, footstepRightHasPlayed;
 
 
@@ -32,7 +33,6 @@ public class FPController : MonoBehaviour {
 	void Start () {
 		cam = GetComponentInChildren<Camera> ();
 		cc = GetComponent<CharacterController> ();
-		AS_SFX.volume = 0.05f;
 		Cursor.visible = false;
 
 		defaultYpos = cam.transform.localPosition.y;
@@ -54,9 +54,11 @@ public class FPController : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftShift)) {
 			forwardspeed *= 2f;
 			is_sprinting = true;
+			if (!AS_Breath.isPlaying) AS_Breath.Play();
 		} else
 		{
 			is_sprinting = false;
+			AS_Breath.Stop();
 		}
 
 
@@ -95,13 +97,13 @@ public class FPController : MonoBehaviour {
 				);
 
 			if (sineVal < -0.9 && !footstepLeftHasPlayed)
-			{
-				AS_SFX.PlayOneShot(footstepLeft);
-				footstepLeftHasPlayed = true;
+            {
+                AS_BGM_Footstep.PlayOneShot(footstepLeft, 0.2f);
+                footstepLeftHasPlayed = true;
 			} else if (sineVal > 0.9 && !footstepRightHasPlayed)
 			{
-				AS_SFX.PlayOneShot(footstepRight);
-				footstepRightHasPlayed = true;
+                AS_BGM_Footstep.PlayOneShot(footstepRight, 0.2f);
+                footstepRightHasPlayed = true;
 			} else
 			{
 				footstepLeftHasPlayed = footstepRightHasPlayed = false;
