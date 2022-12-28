@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorSound : MonoBehaviour {
+public class FloorFake : MonoBehaviour {
 
 	private GameObject player;
 	void Start() {
@@ -13,7 +13,7 @@ public class FloorSound : MonoBehaviour {
 			this.gameObject.GetComponent<AudioSource>().Play();
 			this.gameObject.GetComponent<BoxCollider>().enabled = false;
 			this.player.GetComponent<CharacterController>().enabled = false;
-            this.player.GetComponent<Rigidbody>().velocity = Vector3.down;
+			this.player.GetComponent<Rigidbody>().velocity = Vector3.down * 3;
 			Invoke("ccResume", 0.3f);
 			Destroy(this.gameObject, 2f);
 		}
