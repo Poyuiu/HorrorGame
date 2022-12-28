@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FPController : MonoBehaviour {
@@ -15,16 +16,14 @@ public class FPController : MonoBehaviour {
 	private float verticalVelocity; 
 	private Vector3 speedCombined;
 	private CharacterController cc;
-	private bool is_sprinting;
+	private bool is_sprinting, is_walking;
 	private float defaultYpos;
 	private float headBobTimer;
 	private float walkBobSpeed = 10f;
 	private float sprintBobSpeed = 19f;
 
-    public AudioSource AS_BGM_Footstep;
-    public AudioSource AS_Breath;
-    public AudioClip footstepLeft, footstepRight;
-	private bool footstepLeftHasPlayed, footstepRightHasPlayed;
+    public AudioSource AS_Footstep, AS_Breath;
+    public AudioClip footStep, footStep_sprint;
 
 
     private Camera cam;
@@ -51,18 +50,30 @@ public class FPController : MonoBehaviour {
 		forwardspeed = Input.GetAxis ("Vertical") * speed;
 		sideSpeed = Input.GetAxis ("Horizontal") * speed;
 
-		if (Input.GetKey(KeyCode.LeftShift)) {
+		if (Input.GetKey(KeyCode.LeftShift) && forwardspeed > 0) {
 			forwardspeed *= 2f;
 			is_sprinting = true;
 			if (!AS_Breath.isPlaying) AS_Breath.Play();
-		} else
-		{
-			is_sprinting = false;
-			AS_Breath.Stop();
-		}
+			AS_Footstep.clip = footStep_sprint;
+        }
+        else
+        {
+            is_sprinting = false;
+            AS_Breath.Stop();
+            AS_Footstep.clip = footStep;
+        }
+
+        if (Mathf.Abs(forwardspeed) > 0 || Mathf.Abs(sideSpeed) > 0)
+        {
+            if (!AS_Footstep.isPlaying) AS_Footstep.Play();
+        }
+        else
+        {
+            AS_Footstep.Stop();
+        }
 
 
-		verticalVelocity += Physics.gravity.y * Time.deltaTime;
+        verticalVelocity += Physics.gravity.y * Time.deltaTime;
 
 		if (cc.isGrounded) {
 			if (Input.GetButtonDown("Jump"))
@@ -96,18 +107,16 @@ public class FPController : MonoBehaviour {
 				cam.transform.localPosition.z
 				);
 
-			if (sineVal < -0.9 && !footstepLeftHasPlayed)
-            {
-                AS_BGM_Footstep.PlayOneShot(footstepLeft, 0.2f);
-                footstepLeftHasPlayed = true;
-			} else if (sineVal > 0.9 && !footstepRightHasPlayed)
-			{
-                AS_BGM_Footstep.PlayOneShot(footstepRight, 0.2f);
-                footstepRightHasPlayed = true;
-			} else
-			{
-				footstepLeftHasPlayed = footstepRightHasPlayed = false;
-			}
+			//if (sineVal < -0.9 && !footstepLeftHasPlayed)
+   //         {
+   //             footstepLeftHasPlayed = true;
+			//} else if (sineVal > 0.9 && !footstepRightHasPlayed)
+			//{
+   //             footstepRightHasPlayed = true;
+			//} else
+			//{
+			//	footstepLeftHasPlayed = footstepRightHasPlayed = false;
+			//}
 
 		}
 	}
