@@ -10,6 +10,7 @@ public class DoorScript : MonoBehaviour
 	[SerializeField] private GameObject door2;
 	[SerializeField] private GameObject dark_door1;
 	[SerializeField] private GameObject dark_door2;
+    public AudioSource AS;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +25,14 @@ public class DoorScript : MonoBehaviour
 
     public void openDoor() {
         if (isOpened) return;
+        AS.PlayOneShot(AS.clip);
         isOpened = true;
         rotateTimes = 80 - rotateTimes;
     }
 
     public void closeDoor() {
         if (!isOpened || rotateTimes < 80) return;
+        AS.PlayOneShot(AS.clip);
         isOpened = false;
         rotateTimes = 80 - rotateTimes;
     }

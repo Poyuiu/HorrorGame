@@ -52,6 +52,7 @@ public class leverScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && !isValve && DoorObject != null && NearView()) // 1.lever and 2.button
             {
+                Debug.Log("test");
                 DoorObject.openDoor(); // void in door script to open/close
                 if (isLever) // animations
                 {

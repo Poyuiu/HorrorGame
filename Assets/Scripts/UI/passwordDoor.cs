@@ -11,6 +11,7 @@ public class passwordDoor : MonoBehaviour {
 	[SerializeField] private GameObject door2;
 	[SerializeField] private GameObject dark_door1;
 	[SerializeField] private GameObject dark_door2;
+    [SerializeField] public DoorScript door;
 	[SerializeField] private GameObject FPSController;
 	[SerializeField] private List<GameObject> numberWithGrayFilter;
 	private string password;
@@ -172,7 +173,8 @@ public class passwordDoor : MonoBehaviour {
             return;
         }
         // open the door
-        this.isDoorOpen = true;
+        //this.isDoorOpen = true;
+        door.openDoor();
         Destroy(this.gameObject.GetComponent<MeshRenderer>());
         Destroy(this.canvas, 0.5f);
         Destroy(this.gameObject, 2f);
@@ -180,13 +182,13 @@ public class passwordDoor : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        if (this.isDoorOpen && this.rotateTimes < 75)
-        {
-            door1.transform.Rotate(Vector3.down);
-            door2.transform.Rotate(Vector3.up);
-            dark_door1.transform.Rotate(Vector3.down);
-            dark_door2.transform.Rotate(Vector3.up);
-            this.rotateTimes++;
-        }
+        //if (this.isDoorOpen && this.rotateTimes < 75)
+        //{
+        //    door1.transform.Rotate(Vector3.down);
+        //    door2.transform.Rotate(Vector3.up);
+        //    dark_door1.transform.Rotate(Vector3.down);
+        //    dark_door2.transform.Rotate(Vector3.up);
+        //    this.rotateTimes++;
+        //}
     }
 }
