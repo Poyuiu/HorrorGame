@@ -15,6 +15,7 @@ TagManager:
   - Lever
   - PlayerFake
   - Fragment
+  - Door
   layers:
   - Default
   - TransparentFX

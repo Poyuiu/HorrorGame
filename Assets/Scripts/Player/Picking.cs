@@ -72,6 +72,10 @@ public class Picking : MonoBehaviour
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
+        else if (other.gameObject.CompareTag("Door"))
+        {
+            other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -114,6 +118,10 @@ public class Picking : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Lever")) {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("Door"))
+        {
+            other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
     }
 }
