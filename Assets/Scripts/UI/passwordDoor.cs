@@ -3,32 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class passwordDoor : MonoBehaviour
-{
-    [SerializeField] private GameObject canvas;
-    //[SerializeField] private GameObject passwordTextObj;
-    [SerializeField] private MouseTargetItem mouseTargetScript;
-    [SerializeField] private GameObject door1;
-    [SerializeField] private GameObject door2;
-    [SerializeField] private GameObject dark_door1;
-    [SerializeField] private GameObject dark_door2;
-    [SerializeField] private GameObject FPSController;
-    [SerializeField] private List<GameObject> numberWithGrayFilter;
-    private string password;
-    //private TMP_Text passwordText;
-    private const string passwordTextPrefix = "<mspace=1.47em>";
-    private const string correctPassword = "9487";
-    private bool isDoorOpen;
-    private int rotateTimes;
+public class passwordDoor : MonoBehaviour {
+	[SerializeField] private GameObject canvas;
+	//[SerializeField] private GameObject passwordTextObj;
+	[SerializeField] private MouseTargetItem mouseTargetScript;
+	[SerializeField] private GameObject door1;
+	[SerializeField] private GameObject door2;
+	[SerializeField] private GameObject dark_door1;
+	[SerializeField] private GameObject dark_door2;
+    [SerializeField] public DoorScript door;
+	[SerializeField] private GameObject FPSController;
+	[SerializeField] private List<GameObject> numberWithGrayFilter;
+	private string password;
+	//private TMP_Text passwordText;
+	private const string passwordTextPrefix = "<mspace=1.47em>";
+	private const string correctPassword = "9487";
+	private bool isDoorOpen;
+	private int rotateTimes;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.isDoorOpen = false;
-        //this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
-        this.password = "";
-        //this.passwordText.text = passwordTextPrefix;
-        this.rotateTimes = 0;
+	// Start is called before the first frame update
+	void Start() {
+        if (FPSController.GetComponent<PlayerSave>().nowSP >= 1)
+            Destroy(this.gameObject);
+		this.isDoorOpen = false;
+		//this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
+		this.password = "";
+		//this.passwordText.text = passwordTextPrefix;
+		this.rotateTimes = 0;
 
         Transform t = canvas.transform;
         foreach (Transform tr in t)
@@ -172,7 +173,8 @@ public class passwordDoor : MonoBehaviour
             return;
         }
         // open the door
-        this.isDoorOpen = true;
+        //this.isDoorOpen = true;
+        door.openDoor();
         Destroy(this.gameObject.GetComponent<MeshRenderer>());
         Destroy(this.canvas, 0.5f);
         Destroy(this.gameObject, 2f);
@@ -180,13 +182,13 @@ public class passwordDoor : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (this.isDoorOpen && this.rotateTimes < 75)
-        {
-            door1.transform.Rotate(Vector3.down);
-            door2.transform.Rotate(Vector3.up);
-            dark_door1.transform.Rotate(Vector3.down);
-            dark_door2.transform.Rotate(Vector3.up);
-            this.rotateTimes++;
-        }
+        //if (this.isDoorOpen && this.rotateTimes < 75)
+        //{
+        //    door1.transform.Rotate(Vector3.down);
+        //    door2.transform.Rotate(Vector3.up);
+        //    dark_door1.transform.Rotate(Vector3.down);
+        //    dark_door2.transform.Rotate(Vector3.up);
+        //    this.rotateTimes++;
+        //}
     }
 }
