@@ -5,25 +5,35 @@ using UnityEngine;
 public class DiaryEntry : MonoBehaviour
 {
     RectTransform rectTranform;
-    // Start is called before the first frame update
+    public GameObject diary;
+    public bool diaryState;
+
     void Start()
     {
         rectTranform = gameObject.GetComponent<RectTransform>();
+        diaryState = false;
+        diary.SetActive(diaryState);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PointerEnter()
     {
-        
+        rectTranform.localScale = new Vector3(1.1f, 1.1f, 1f);
     }
 
-    public void pointerEnter()
+    public void PointerLeave()
     {
-        rectTranform.localScale = new Vector3(1.1f,1.1f,1f);
+        rectTranform.localScale = new Vector3(1f, 1f, 1f);
     }
 
-    public void pointerLeave()
+    public void PointerClick()
     {
-        rectTranform.localScale = new Vector3(1f,1f,1f);
+        diaryState = !diaryState;
+        diary.SetActive(diaryState);
+    }
+
+    public void CloseManually()
+    {
+        diaryState = false;
+        diary.SetActive(diaryState);
     }
 }

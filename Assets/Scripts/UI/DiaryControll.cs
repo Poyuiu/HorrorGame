@@ -6,15 +6,24 @@ using UnityEngine.UI;
 
 public class DiaryControll : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject rightCorner;
+    public GameObject leftCorner;
+    public void ShowRightCorner()
     {
-        
+        //Debug.Log("show right");
+        //Debug.Log(rightCorner.name);
+        rightCorner.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void HideRightCorner()
     {
-        
+        rightCorner.SetActive(false);
+    }
+    public void ShowLeftCorner()
+    {
+        leftCorner.SetActive(true);
+    }
+    public void HideLeftCorner()
+    {
+        leftCorner.SetActive(false);
     }
 }
