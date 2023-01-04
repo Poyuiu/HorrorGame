@@ -24,7 +24,6 @@ public class DropItem : MonoBehaviour
         if (hasTriggered) return;
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("test");
             hasTriggered = true;
             Item.GetComponent<Rigidbody>().AddForce(force);
         }
