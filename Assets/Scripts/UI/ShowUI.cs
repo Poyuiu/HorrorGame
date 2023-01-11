@@ -9,12 +9,14 @@ public class ShowUI : MonoBehaviour
     //[SerializeField] private GameObject passwordTextObj;
     [SerializeField] private MouseTargetItem mouseTargetScript;
     [SerializeField] private GameObject FPSController;
+    [SerializeField] private GameObject closeBG;
     //private TMP_Text passwordText;
-
+    private bool isOpen;
     // Start is called before the first frame update
     void Start()
     {
-        Transform t = canvas.transform;
+        _ = canvas.transform;
+        isOpen = false;
     }
     // Update is called once per frame
     void Update()
@@ -22,14 +24,16 @@ public class ShowUI : MonoBehaviour
         //this.passwordText.text = passwordTextPrefix + this.password;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            closeCanvas();
+            CloseCanvas();
         }
-        else if(Input.GetKeyDown(KeyCode.Tab))
+        else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            openCanvas();
+            isOpen = !isOpen;
+            if (isOpen) OpenCanvas();
+            else CloseCanvas();
         }
     }
-    public void openCanvas()
+    public void OpenCanvas()
     {
         Cursor.visible = true;
         this.canvas.SetActive(true);
@@ -38,12 +42,14 @@ public class ShowUI : MonoBehaviour
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         this.mouseTargetScript.isMouseTargetAwake = false;
     }
-    public void closeCanvas()
+    public void CloseCanvas()
     {
         Cursor.visible = false;
         this.FPSController.GetComponent<FPController>().enabled = true;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = true;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        this.canvas.transform.GetChild(2).gameObject.
+            GetComponent<DiaryEntry>().CloseManually();
         this.canvas.SetActive(false);
         StartCoroutine(ForMouseClose());
     }
@@ -51,5 +57,13 @@ public class ShowUI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         this.mouseTargetScript.isMouseTargetAwake = true;
+    }
+    public void CloseBGShow()
+    {
+        this.closeBG.SetActive(true);
+    }
+    public void CloseBGNotShow()
+    {
+        this.closeBG.SetActive(false);
     }
 }
