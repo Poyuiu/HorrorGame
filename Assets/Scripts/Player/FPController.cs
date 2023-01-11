@@ -21,6 +21,7 @@ public class FPController : MonoBehaviour {
 	private float headBobTimer;
 	private float walkBobSpeed = 10f;
 	private float sprintBobSpeed = 19f;
+	private bool dead = false;
 
     public AudioSource AS_Footstep, AS_Breath;
     public AudioClip footStep, footStep_sprint;
@@ -32,6 +33,7 @@ public class FPController : MonoBehaviour {
 	void Start () {
 		cam = GetComponentInChildren<Camera> ();
 		cc = GetComponent<CharacterController> ();
+		cc.minMoveDistance = 0;
 		Cursor.visible = false;
 
 		defaultYpos = cam.transform.localPosition.y;
@@ -39,6 +41,12 @@ public class FPController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (dead)
+		{
+			AS_Footstep.Stop();
+			AS_Breath.Stop();
+			return;
+		}
 
 		rotationLeftRight = Input.GetAxis ("Mouse X") * mouseSensitivity;
 		transform.Rotate (0, rotationLeftRight,0);
@@ -53,7 +61,8 @@ public class FPController : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftShift) && forwardspeed > 0) {
 			forwardspeed *= 2f;
 			is_sprinting = true;
-			if (!AS_Breath.isPlaying) AS_Breath.Play();
+			if (!cc.isGrounded) AS_Breath.Stop();
+			else if (!AS_Breath.isPlaying) AS_Breath.Play();
 			AS_Footstep.clip = footStep_sprint;
         }
         else
@@ -63,7 +72,7 @@ public class FPController : MonoBehaviour {
             AS_Footstep.clip = footStep;
         }
 
-        if (Mathf.Abs(forwardspeed) > 0 || Mathf.Abs(sideSpeed) > 0)
+        if ((Mathf.Abs(forwardspeed) > 0 || Mathf.Abs(sideSpeed) > 0) && cc.isGrounded)
         {
             if (!AS_Footstep.isPlaying) AS_Footstep.Play();
         }
@@ -79,7 +88,7 @@ public class FPController : MonoBehaviour {
 			if (Input.GetButtonDown("Jump"))
 				verticalVelocity = jumpSpeed;
 			else if (verticalVelocity < -1) {
-				verticalVelocity = 0;
+				verticalVelocity = -0.1f * Time.deltaTime;
 			}
 		}
 
@@ -107,17 +116,16 @@ public class FPController : MonoBehaviour {
 				cam.transform.localPosition.z
 				);
 
-			//if (sineVal < -0.9 && !footstepLeftHasPlayed)
-   //         {
-   //             footstepLeftHasPlayed = true;
-			//} else if (sineVal > 0.9 && !footstepRightHasPlayed)
-			//{
-   //             footstepRightHasPlayed = true;
-			//} else
-			//{
-			//	footstepLeftHasPlayed = footstepRightHasPlayed = false;
-			//}
-
 		}
+	}
+
+	public void kill()
+	{
+		this.dead = true;
+	}
+
+	public void revive()
+	{
+		this.dead = false;
 	}
 }
