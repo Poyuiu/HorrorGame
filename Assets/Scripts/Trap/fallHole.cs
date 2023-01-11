@@ -13,6 +13,7 @@ public class fallHole : MonoBehaviour {
     IEnumerator fallHoleTeleport() {
         this.zombieAnimator.SetBool("isScare", true);
         this.player.GetComponent<LidarProject.Scanner>().enabled = false;
+        this.player.GetComponent<FPController>().kill();
         yield return new WaitForSeconds(0.4f);
         this.player.GetComponent<FPController>().enabled = false;
         for (int i = 0; i < this.player.transform.GetChild(0).childCount; i++)
@@ -43,6 +44,7 @@ public class fallHole : MonoBehaviour {
 
 	}
 	public void reloadGame() {
+        this.player.GetComponent<FPController>().revive();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		Time.timeScale = 1;
 		Cursor.visible = false;
