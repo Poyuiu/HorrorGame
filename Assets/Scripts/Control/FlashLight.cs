@@ -7,7 +7,7 @@ public class FlashLight : MonoBehaviour
     [SerializeField] private GameObject mLight;
     private void Start()
     {
-        mLight.SetActive(true);
+        mLight.SetActive(false);
     }
     void Update()
     {
