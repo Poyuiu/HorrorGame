@@ -16,7 +16,7 @@ public class PillControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pillCount = 1;
+        pillCount = 0;
         rectTranform = gameObject.GetComponent<RectTransform>();
         showUI = UI.GetComponent<ShowUI>();
     }
