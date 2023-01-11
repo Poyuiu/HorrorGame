@@ -16,6 +16,7 @@ TagManager:
   - PlayerFake
   - Fragment
   - Door
+  - Diary
   layers:
   - Default
   - TransparentFX

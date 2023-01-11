@@ -101,5 +101,8 @@ public class SceneLoader : MonoBehaviour
             }
         }
     }
-
+    public void InToTheDark()
+    {
+        StartCoroutine(ChangeScene());
+    }
 }

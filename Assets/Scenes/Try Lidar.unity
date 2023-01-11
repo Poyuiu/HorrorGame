@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0034595546, g: 0.0076417513, b: 0.0077389777, a: 1}
+  m_IndirectSpecularColor: {r: 0.0035302797, g: 0.0076557286, b: 0.007725876, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4544,8 +4544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450, y: 38}
-  m_SizeDelta: {x: 460.3475, y: 841.4838}
+  m_AnchoredPosition: {x: 530.7826, y: 38}
+  m_SizeDelta: {x: 298.7824, y: 841.4838}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &690036792
 MonoBehaviour:
@@ -4596,13 +4596,14 @@ GameObject:
   - component: {fileID: 731255223}
   - component: {fileID: 731255225}
   - component: {fileID: 731255224}
+  - component: {fileID: 731255226}
   m_Layer: 5
   m_Name: diary_page5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &731255223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4661,6 +4662,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731255222}
   m_CullTransparentMesh: 1
+--- !u!114 &731255226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731255222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &829206052
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,13 +5082,14 @@ GameObject:
   - component: {fileID: 899865473}
   - component: {fileID: 899865475}
   - component: {fileID: 899865474}
+  - component: {fileID: 899865476}
   m_Layer: 5
   m_Name: Right Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &899865473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5134,6 +5148,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899865472}
   m_CullTransparentMesh: 1
+--- !u!114 &899865476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899865472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &905180607
 Mesh:
   m_ObjectHideFlags: 0
@@ -5469,6 +5495,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1735986132}
           m_TargetAssemblyTypeName: DiaryControll, Assembly-CSharp
           m_MethodName: HideRightCorner
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1735986132}
+          m_TargetAssemblyTypeName: DiaryControll, Assembly-CSharp
+          m_MethodName: ToNextPage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6613,6 +6655,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1735986132}
+          m_TargetAssemblyTypeName: DiaryControll, Assembly-CSharp
+          m_MethodName: ToPreviousPage
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1114619552
 GameObject:
   m_ObjectHideFlags: 0
@@ -7246,8 +7304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -465, y: 45}
-  m_SizeDelta: {x: 460.3475, y: 841.4838}
+  m_AnchoredPosition: {x: -551.8412, y: 45}
+  m_SizeDelta: {x: 286.6651, y: 841.4838}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158118266
 MonoBehaviour:
@@ -7853,13 +7911,14 @@ GameObject:
   - component: {fileID: 1292089125}
   - component: {fileID: 1292089127}
   - component: {fileID: 1292089126}
+  - component: {fileID: 1292089128}
   m_Layer: 5
   m_Name: Left Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1292089125
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7918,6 +7977,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292089124}
   m_CullTransparentMesh: 1
+--- !u!114 &1292089128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292089124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1323596599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8776,13 +8847,14 @@ GameObject:
   - component: {fileID: 1478591316}
   - component: {fileID: 1478591318}
   - component: {fileID: 1478591317}
+  - component: {fileID: 1478591319}
   m_Layer: 5
   m_Name: diary_page1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1478591316
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8841,6 +8913,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478591315}
   m_CullTransparentMesh: 1
+--- !u!114 &1478591319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478591315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1495132010
 GameObject:
   m_ObjectHideFlags: 0
@@ -10524,7 +10608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1735986131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10568,6 +10652,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightCorner: {fileID: 899865472}
   leftCorner: {fileID: 1292089124}
+  pageList:
+  - {fileID: 1478591315}
+  - {fileID: 2080127351}
+  - {fileID: 731255222}
+  - {fileID: 1997878899}
 --- !u!1 &1741697894
 GameObject:
   m_ObjectHideFlags: 0
@@ -11339,7 +11428,6 @@ GameObject:
   - component: {fileID: 1978253653}
   - component: {fileID: 1978253655}
   - component: {fileID: 1978253654}
-  - component: {fileID: 1978253656}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -11405,18 +11493,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978253652}
   m_CullTransparentMesh: 1
---- !u!114 &1978253656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978253652}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1989006525
 GameObject:
   m_ObjectHideFlags: 0
@@ -11613,13 +11689,14 @@ GameObject:
   - component: {fileID: 1997878900}
   - component: {fileID: 1997878902}
   - component: {fileID: 1997878901}
+  - component: {fileID: 1997878903}
   m_Layer: 5
   m_Name: diary_page7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1997878900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11678,6 +11755,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997878899}
   m_CullTransparentMesh: 1
+--- !u!114 &1997878903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997878899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2057496938
 Mesh:
   m_ObjectHideFlags: 0
@@ -11853,13 +11942,14 @@ GameObject:
   - component: {fileID: 2080127352}
   - component: {fileID: 2080127354}
   - component: {fileID: 2080127353}
+  - component: {fileID: 2080127355}
   m_Layer: 5
   m_Name: diary_page3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2080127352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11918,6 +12008,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080127351}
   m_CullTransparentMesh: 1
+--- !u!114 &2080127355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080127351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c990d26559e274ebaa5304136c9afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2081029709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3555869187856916552, guid: 2dfe63d54b200124f90bc59b6b09377c, type: 3}

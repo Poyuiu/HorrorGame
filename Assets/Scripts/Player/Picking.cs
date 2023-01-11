@@ -5,48 +5,43 @@ using UnityEngine;
 public class Picking : MonoBehaviour
 {
     // public Canvas hints_1;
-    public SceneLoader loader;
     public Canvas SanityEffect;
+    public GameObject PillControler;
 
-    private int sanity;
+
+    private PillControl pillControl;
     private bool sanLock;
     private bool canPickPill;
     private bool canPickNewspaper;
     private bool goPickNewspaper;
+    private bool canPickDiary;
+    private bool goPickDiary;
     public bool leverHint = false;
     private void Start()
     {
-        sanity = 2;
+        pillControl = PillControler.GetComponent<PillControl>();
         sanLock = false;
         canPickPill = false;
         canPickNewspaper = false;
+        canPickDiary = false;
         goPickNewspaper = false;
+        goPickDiary = false;
     }
 
     private void Update()
     {
-        if (sanity == 1)
-        {
-            SanityEffect.enabled = true;
-        }
-        else
-        {
-            if (sanity == 0)
-            {
-                sanity = 2;
-                StartCoroutine(loader.ChangeScene());
-            }
-            SanityEffect.enabled = false;
-        }
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             sanLock = true;
             if (canPickPill == true)
-                sanity -= 1;
+                pillControl.PickPill();
             if (canPickNewspaper)
             {
                 goPickNewspaper = true;
+            }
+            if (canPickDiary)
+            {
+                goPickDiary = true;
             }
         }
     }
@@ -76,6 +71,11 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
         }
+        else if (other.gameObject.CompareTag("Diary"))
+        {
+            other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+            canPickDiary = true;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -98,6 +98,15 @@ public class Picking : MonoBehaviour
                 goPickNewspaper = false;
                 other.gameObject.SetActive(false);
                 canPickNewspaper = false;
+            }
+        } if (other.gameObject.CompareTag("Diary"))
+        {
+            if(goPickDiary)
+            {
+                other.gameObject.GetComponent<DiaryPageControl>().Pick();
+                goPickDiary = false;
+                other.gameObject.SetActive(false);
+                canPickDiary = false;
             }
         }
     }
@@ -122,6 +131,11 @@ public class Picking : MonoBehaviour
         else if (other.gameObject.CompareTag("Door"))
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("Diary"))
+        {
+            other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            canPickDiary = false;
         }
     }
 }
