@@ -19,14 +19,13 @@ public class FlashLight : MonoBehaviour
             started_off_routine = true;
             StartCoroutine(randomClose());
         }
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
             mLight.SetActive(!mLight.activeSelf);
     }
 
     IEnumerator randomClose()
     {
         float close_time = Random.Range(30, 120);
-        Debug.Log(close_time);
         yield return new WaitForSeconds(close_time);
         if (!mLight.activeSelf)
         {
