@@ -6,13 +6,13 @@ using TMPro;
 public class passwordDoor : MonoBehaviour {
 	[SerializeField] private GameObject canvas;
 	//[SerializeField] private GameObject passwordTextObj;
-	[SerializeField] private MouseTargetItem mouseTargetScript;
 	[SerializeField] private GameObject door1;
 	[SerializeField] private GameObject door2;
 	[SerializeField] private GameObject dark_door1;
 	[SerializeField] private GameObject dark_door2;
     [SerializeField] public DoorScript door;
-	[SerializeField] private GameObject FPSController;
+    [SerializeField] private GameObject hint;
+    [SerializeField] private GameObject FPSController;
 	[SerializeField] private List<GameObject> numberWithGrayFilter;
 	private string password;
 	//private TMP_Text passwordText;
@@ -43,11 +43,25 @@ public class passwordDoor : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E) && NearView())
+        {
+            Destroy(hint);
+            openCanvas();
+        }
         //this.passwordText.text = passwordTextPrefix + this.password;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             closeCanvas();
         }
+    }
+    
+    bool NearView()
+    {
+        float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        Vector3 direction = transform.position - Camera.main.transform.position;
+        float angleView = Vector3.Angle(Camera.main.transform.forward, direction);
+        if (angleView < 60f && distance < 3f) return true;
+        else return false;
     }
     public void openCanvas()
     {
@@ -58,7 +72,6 @@ public class passwordDoor : MonoBehaviour {
         this.FPSController.GetComponent<FPController>().enabled = false;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-        this.mouseTargetScript.isMouseTargetAwake = false;
     }
     public void closeCanvas()
     {
@@ -79,7 +92,6 @@ public class passwordDoor : MonoBehaviour {
     public IEnumerator ForMouseClose()
     {
         yield return new WaitForSeconds(0.2f);
-        this.mouseTargetScript.isMouseTargetAwake = true;
     }
     public void addZero()
     {

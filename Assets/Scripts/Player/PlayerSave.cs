@@ -9,7 +9,7 @@ public class PlayerSave : MonoBehaviour {
 	Save.PlayerData playerData;
 	void Awake() {
 		// uncomment below if you want to clear save data
-		// PlayerPrefs.DeleteAll();
+		PlayerPrefs.DeleteAll();
 		nowSP = 0;
 		Load();
         switch(nowSP){

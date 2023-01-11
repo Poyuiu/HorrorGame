@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
     public DoorScript stage3Doors;
     public Material stage3FloorMaterialBIG;
     public MeshRenderer stage3FloorMeshRenderer;
+    public WalkingZombie walkingZombie;
 
     public enum gameState {Stage1, Stage2, Stage3, Stage3_1};
     public gameState curGameState;
@@ -90,6 +91,11 @@ public class SceneLoader : MonoBehaviour
         if (newValue <= curGameState) return;
         curGameState = newValue;
         switch(curGameState) {
+            case gameState.Stage2:
+            {
+                walkingZombie.is_walking = true;
+                break;
+            }
             case gameState.Stage3: {
                 stage3Doors.closeDoor();
                 break;

@@ -29,15 +29,6 @@ public class MouseTargetItem : MonoBehaviour {
 			Transform objectHit = hit.transform;
 			// Do something with the object that was hit by the raycast.
 			switch (hit.collider.gameObject.name) {
-				case "doorPassword":
-					if (this.isTarget)
-						break;
-					this.isTarget = true;
-					this.nowTarget = targetItem.passwordDoor;
-					targetObject = GameObject.Find("doorPassword");
-					targetObjectRenderer = targetObject.GetComponent<MeshRenderer>();
-					targetObjectRenderer.enabled = true;
-					break;
 				case "PutNewspaper1":
 					if (this.isTarget)
 						break;
