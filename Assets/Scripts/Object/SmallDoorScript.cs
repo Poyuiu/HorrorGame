@@ -10,19 +10,26 @@ public class SmallDoorScript : MonoBehaviour
 	[SerializeField] private GameObject door;
     [SerializeField] private AudioSource AS;
     [SerializeField] private GameObject hint;
+    GameObject UI;
+    bool canOpenDoor;
     // Start is called before the first frame update
     void Start()
     {
-        
+        canOpenDoor = true;
+        UI = GameObject.Find("UI System");
     }
 
     // Update is called once per frame
     void Update()
     {
+        canOpenDoor = !UI.GetComponent<ShowUI>().UIIsOpen();
         if (Input.GetKeyDown(KeyCode.E) && NearView())
         {
-            if (isOpened) closeDoor();
-            else openDoor();
+            if(canOpenDoor)
+            {
+                if (isOpened) closeDoor();
+                else openDoor();
+            }
         }
     }
     bool NearView()
