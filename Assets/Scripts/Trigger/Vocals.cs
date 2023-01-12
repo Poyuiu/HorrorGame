@@ -7,6 +7,9 @@ public class Vocals : MonoBehaviour
     private AudioSource source;
 
     public static Vocals instance;
+
+    public FPController fPController;
+
     public Subs subs;
     private List<string> subtitles;
     private List<float> subsKeepingTime;
@@ -32,19 +35,45 @@ public class Vocals : MonoBehaviour
         subtitles = new List<string>
         {
             "Why am I here?",
+
+            "Uh... My head hurts.",
+
+            "Why I can't remember anything",
+
+            "Skip it. I have to find a way to leave here first.",
+
+            "What is it?",
+
+            "This handwriting seems familiar...",
+
+            hint_pre +
+            "(Press Tab to Open Diary Interface)"+
+            hint_post,
+
             hint_pre +
             "(Press Right Mouse Button to Switch the Flashlight)"+
             hint_post,
         };
         subsKeepingTime = new List<float>
         {
+            // why am
+            1.5f,
+            // head hurt
             2f,
+            // can't remember
+            2f,
+            // skip it
+            3f,
+            // what is it
             1f,
+            // this handwriting
+            2f,
+
         };
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (cur_sub_index == 1 && Input.GetMouseButtonDown(1))
             cont = true;
     }
 
@@ -54,25 +83,33 @@ public class Vocals : MonoBehaviour
             source.Stop();
 
         source.PlayOneShot(clip);
-        //Debug.Log("Hi I am here");
+
         if (cur_sub_index >= subtitles.Count)
             return;
-        //Debug.Log("Hi I am Here");
+
+        StartCoroutine(SubsDisplay());
+    }
+
+    IEnumerator SubsDisplay()
+    {
+        if (cur_sub_index <= 3)
+            fPController.LockMove();
+
         Subs.instance.SetSubtitle(
             mark_key_word_pre
             + subtitles[cur_sub_index]
             + mark_key_word_post
             );
-        StartCoroutine(WaitForSubsDisplay());
-    }
-
-    IEnumerator WaitForSubsDisplay()
-    {
-        if (cur_sub_index == 1)
-            yield return new WaitUntil(() => cont);
+        //if (cur_sub_index == 1)
+        //    yield return new WaitUntil(() => cont);
         yield return new WaitForSeconds(subsKeepingTime[cur_sub_index]);
+
+        if (cur_sub_index <= 3)
+            fPController.UnlockMove();
+
         cur_sub_index += 1;
         subs.ClearSubtitile();
+
     }
 
 }
