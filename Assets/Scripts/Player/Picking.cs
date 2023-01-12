@@ -12,8 +12,6 @@ public class Picking : MonoBehaviour
     private PillControl pillControl;
     private bool sanLock;
     private bool canPickPill;
-    private bool canPickNewspaper;
-    private bool goPickNewspaper;
     private bool canPickDiary;
     private bool goPickDiary;
     public bool leverHint = false;
@@ -22,9 +20,7 @@ public class Picking : MonoBehaviour
         pillControl = PillControler.GetComponent<PillControl>();
         sanLock = false;
         canPickPill = false;
-        canPickNewspaper = false;
         canPickDiary = false;
-        goPickNewspaper = false;
         goPickDiary = false;
     }
 
@@ -35,10 +31,6 @@ public class Picking : MonoBehaviour
             sanLock = true;
             if (canPickPill == true)
                 pillControl.PickPill();
-            if (canPickNewspaper)
-            {
-                goPickNewspaper = true;
-            }
             if (canPickDiary)
             {
                 goPickDiary = true;
@@ -60,7 +52,6 @@ public class Picking : MonoBehaviour
         else if (other.gameObject.CompareTag("Newspaper"))
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
-            canPickNewspaper = true;
         }
         else if (other.gameObject.CompareTag("Lever")) {
             if (leverHint) {
@@ -75,6 +66,10 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
             canPickDiary = true;
+        } 
+        else if (other.gameObject.CompareTag("BlackBoard"))
+        {
+            other.gameObject.transform.Find("Hints").gameObject.SetActive(true);
         }
     }
 
@@ -89,15 +84,6 @@ public class Picking : MonoBehaviour
                 canPickPill = false;
                 // hints_1.enabled = false;
                 other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
-            }
-        } if (other.gameObject.CompareTag("Newspaper"))
-        {
-            if(goPickNewspaper)
-            {
-                other.gameObject.GetComponent<NewspaperAction>().Pick();
-                goPickNewspaper = false;
-                other.gameObject.SetActive(false);
-                canPickNewspaper = false;
             }
         } if (other.gameObject.CompareTag("Diary"))
         {
@@ -123,7 +109,6 @@ public class Picking : MonoBehaviour
         else if (other.gameObject.CompareTag("Newspaper"))
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
-            canPickNewspaper = false;
         }
         else if (other.gameObject.CompareTag("Lever")) {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
@@ -136,6 +121,10 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
             canPickDiary = false;
+        }
+        else if (other.gameObject.CompareTag("BlackBoard"))
+        {
+            other.gameObject.transform.Find("Hints").gameObject.SetActive(false);
         }
     }
 }

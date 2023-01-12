@@ -39,8 +39,14 @@ public class FPController : MonoBehaviour {
 		defaultYpos = cam.transform.localPosition.y;
 	}
 
-	// Update is called once per frame
-	void Update () {
+    private void OnDisable()
+    {
+        AS_Breath.Stop();
+		AS_Footstep.Stop();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (dead)
 		{
 			AS_Footstep.Stop();
