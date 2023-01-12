@@ -154,9 +154,4 @@ public class FPController : MonoBehaviour
     {
         this.lockMove = false;
     }
-    	public void turnOffSound()
-	{
-		AS_Footstep.Stop();
-		AS_Breath.Stop();
-	}
 }

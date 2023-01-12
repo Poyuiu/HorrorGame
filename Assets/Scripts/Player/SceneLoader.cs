@@ -61,7 +61,11 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // In the Dark
-        if (curGameState == gameState.Stage3) {
+        if (curGameState == gameState.Stage2)
+        {
+            yield return new WaitUntil(() => curGameState == gameState.Stage3);
+        }
+        else if (curGameState == gameState.Stage3) {
             yield return new WaitUntil(() => curGameState == gameState.Stage3_1);
 
         } else {
@@ -83,13 +87,6 @@ public class SceneLoader : MonoBehaviour
 
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
-
-        Instantiate(pills,
-                    new Vector3(25.3419991f, -6.86999989f, -3.16000009f),
-                    Quaternion.identity);
-        Instantiate(pills,
-            new Vector3(31.6704674f, -2.19000006f, -7.05183172f),
-            Quaternion.identity);
         
         showUI.EnabledUI(true);
     }

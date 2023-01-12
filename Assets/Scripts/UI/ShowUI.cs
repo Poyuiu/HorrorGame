@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ShowUI : MonoBehaviour
+public class ShowUI : UI
 {
     [SerializeField] private GameObject canvas;
     //[SerializeField] private GameObject passwordTextObj;
-    [SerializeField] private MouseTargetItem mouseTargetScript;
     [SerializeField] private GameObject FPSController;
     [SerializeField] private GameObject closeBG;
     //private TMP_Text passwordText;
-    private bool isOpen;
     bool active;
     // Start is called before the first frame update
     void Start()
     {
         _ = canvas.transform;
-        isOpen = false;
         active = true;
     }
     // Update is called once per frame
@@ -26,30 +23,32 @@ public class ShowUI : MonoBehaviour
         //this.passwordText.text = passwordTextPrefix + this.password;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            CloseCanvas();
+            if (isOpened) CloseCanvas();
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
             if(active)
             {
-                isOpen = !isOpen;
-                if (isOpen) OpenCanvas();
+                if (!isOpened)
+                {
+                    if (canOpen()) OpenCanvas();
+                }
                 else CloseCanvas();
             }
         }
     }
     public void OpenCanvas()
     {
+        isOpened = true;
         Cursor.visible = true;
         this.canvas.SetActive(true);
-        this.FPSController.GetComponent<FPController>().turnOffSound();
         this.FPSController.GetComponent<FPController>().enabled = false;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-        this.mouseTargetScript.isMouseTargetAwake = false;
     }
     public void CloseCanvas()
     {
+        isOpened = false;
         Cursor.visible = false;
         this.FPSController.GetComponent<FPController>().enabled = true;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = true;
@@ -57,12 +56,6 @@ public class ShowUI : MonoBehaviour
         this.canvas.transform.GetChild(2).gameObject.
             GetComponent<DiaryEntry>().CloseManually();
         this.canvas.SetActive(false);
-        StartCoroutine(ForMouseClose());
-    }
-    public IEnumerator ForMouseClose()
-    {
-        yield return new WaitForSeconds(0.2f);
-        this.mouseTargetScript.isMouseTargetAwake = true;
     }
     public void CloseBGShow()
     {
@@ -78,6 +71,6 @@ public class ShowUI : MonoBehaviour
     }
     public bool UIIsOpen()
     {
-        return isOpen;
+        return isOpened;
     }
 }

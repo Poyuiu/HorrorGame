@@ -62,7 +62,6 @@ public class BoardUI : MonoBehaviour, IDropHandler
 
     public void pickNewspaper(uint newspaperNum)
     {
-        Debug.Log(newspaperNum);
         newspaperPicked[newspaperNum] = true;
         UINewspaper[newspaperNum].SetActive(true);
     }

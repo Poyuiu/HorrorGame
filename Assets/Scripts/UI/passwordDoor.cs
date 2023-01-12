@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class passwordDoor : MonoBehaviour {
+public class passwordDoor : UI {
 	[SerializeField] private GameObject canvas;
 	//[SerializeField] private GameObject passwordTextObj;
 	[SerializeField] private GameObject door1;
@@ -41,13 +41,16 @@ public class passwordDoor : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E) && NearView())
         {
-            Destroy(hint);
-            openCanvas();
+            if (!isOpened)
+            {
+                if (canOpen()) OpenCanvas();
+            }
+            else CloseCanvas();
         }
         //this.passwordText.text = passwordTextPrefix + this.password;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            closeCanvas();
+            if (isOpened) CloseCanvas();
         }
     }
     
@@ -59,19 +62,21 @@ public class passwordDoor : MonoBehaviour {
         if (angleView < 60f && distance < 3f) return true;
         else return false;
     }
-    public void openCanvas()
+    public void OpenCanvas()
     {
+        Destroy(hint);
+        isOpened = true;
         if (this.isDoorOpen)
             return;
         Cursor.visible = true;
         this.canvas.SetActive(true);
-        this.FPSController.GetComponent<FPController>().turnOffSound();
         this.FPSController.GetComponent<FPController>().enabled = false;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
     }
-    public void closeCanvas()
+    public void CloseCanvas()
     {
+        isOpened= false;
         if (this.password != correctPassword)
         {
             for (int i = 0; i < 10; i++)
@@ -187,7 +192,7 @@ public class passwordDoor : MonoBehaviour {
         Destroy(this.gameObject.GetComponent<MeshRenderer>());
         Destroy(this.canvas, 0.5f);
         Destroy(this.gameObject, 2f);
-        this.closeCanvas();
+        this.CloseCanvas();
     }
     void FixedUpdate()
     {

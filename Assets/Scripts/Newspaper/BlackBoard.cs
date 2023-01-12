@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackBoard : MonoBehaviour
+public class BlackBoard : UI
 {
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject FPSController;
@@ -10,7 +10,6 @@ public class BlackBoard : MonoBehaviour
 
 
     private GameObject[] newspapers;
-    private bool isOpen = false;
     private bool[] hasNewspaper;
     private GameObject hint;
 
@@ -32,13 +31,15 @@ public class BlackBoard : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && NearView())
         {
-            Destroy(hint);
-            if (!isOpen) OpenCanvas();
+            if (!isOpened)
+            {
+                if (canOpen()) OpenCanvas();
+            }
             else CloseCanvas();
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isOpen) CloseCanvas();
+            if (isOpened) CloseCanvas();
         }
     }
     bool NearView()
@@ -51,7 +52,8 @@ public class BlackBoard : MonoBehaviour
     }
     public void OpenCanvas()
     {
-        isOpen = true;
+        Destroy(hint);
+        isOpened = true;
         Cursor.visible = true;
         this.canvas.SetActive(true);
         this.FPSController.GetComponent<FPController>().enabled = false;
@@ -60,7 +62,7 @@ public class BlackBoard : MonoBehaviour
     }
     public void CloseCanvas()
     {
-        isOpen = false;
+        isOpened = false;
         Cursor.visible = false;
         this.FPSController.GetComponent<FPController>().enabled = true;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = true;
