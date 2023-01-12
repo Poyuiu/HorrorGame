@@ -12,11 +12,13 @@ public class ShowUI : MonoBehaviour
     [SerializeField] private GameObject closeBG;
     //private TMP_Text passwordText;
     private bool isOpen;
+    bool active;
     // Start is called before the first frame update
     void Start()
     {
         _ = canvas.transform;
         isOpen = false;
+        active = true;
     }
     // Update is called once per frame
     void Update()
@@ -28,9 +30,12 @@ public class ShowUI : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Tab))
         {
-            isOpen = !isOpen;
-            if (isOpen) OpenCanvas();
-            else CloseCanvas();
+            if(active)
+            {
+                isOpen = !isOpen;
+                if (isOpen) OpenCanvas();
+                else CloseCanvas();
+            }
         }
     }
     public void OpenCanvas()
@@ -65,5 +70,13 @@ public class ShowUI : MonoBehaviour
     public void CloseBGNotShow()
     {
         this.closeBG.SetActive(false);
+    }
+    public void EnabledUI(bool a)
+    {
+        active = a;
+    }
+    public bool UIIsOpen()
+    {
+        return isOpen;
     }
 }

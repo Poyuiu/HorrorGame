@@ -19,6 +19,9 @@ public class SceneLoader : MonoBehaviour
     public Material stage3FloorMaterialBIG;
     public MeshRenderer stage3FloorMeshRenderer;
     public WalkingZombie walkingZombie;
+    
+    public GameObject ui;
+    ShowUI showUI;
 
     public enum gameState {Stage1, Stage2, Stage3, Stage3_1};
     public gameState curGameState;
@@ -29,6 +32,7 @@ public class SceneLoader : MonoBehaviour
     {
         //nowIsLight = true;
         curGameState = gameState.Stage1;
+        showUI = ui.GetComponent<ShowUI>();
     }
 
     private void Update()
@@ -42,6 +46,7 @@ public class SceneLoader : MonoBehaviour
 
     public IEnumerator ChangeScene()
     {
+        showUI.EnabledUI(false);
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
 
@@ -85,6 +90,8 @@ public class SceneLoader : MonoBehaviour
         Instantiate(pills,
             new Vector3(31.6704674f, -2.19000006f, -7.05183172f),
             Quaternion.identity);
+        
+        showUI.EnabledUI(true);
     }
 
     public void changeGameState(gameState newValue) {

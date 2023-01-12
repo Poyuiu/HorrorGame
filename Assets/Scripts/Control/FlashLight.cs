@@ -25,7 +25,7 @@ public class FlashLight : MonoBehaviour
 
     IEnumerator randomClose()
     {
-        float close_time = Random.Range(30, 120);
+        float close_time = Random.Range(300, 600);
         yield return new WaitForSeconds(close_time);
         if (!mLight.activeSelf)
         {

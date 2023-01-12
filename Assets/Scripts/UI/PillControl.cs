@@ -7,18 +7,22 @@ using TMPro;
 public class PillControl : MonoBehaviour
 {
     public GameObject text;
-    RectTransform rectTranform;
+    RectTransform iconRectTranform;
     public SceneLoader loader;
     public GameObject UI;
     ShowUI showUI;
+    public GameObject bottle;
+    public GameObject icon;
 
     int pillCount;
     // Start is called before the first frame update
     void Start()
     {
         pillCount = 0;
-        rectTranform = gameObject.GetComponent<RectTransform>();
+        iconRectTranform = icon.GetComponent<RectTransform>();
         showUI = UI.GetComponent<ShowUI>();
+        if(pillCount == 0)
+            bottle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,6 +33,8 @@ public class PillControl : MonoBehaviour
 
     public void PickPill()
     {
+        if(pillCount == 0)
+            bottle.SetActive(true);
         pillCount++;
     }
 
@@ -37,6 +43,8 @@ public class PillControl : MonoBehaviour
         if(pillCount == 0)
             return;
         pillCount--;
+        if(pillCount == 0)
+            bottle.SetActive(false);
         loader.InToTheDark();
         showUI.CloseCanvas();
     }
@@ -46,14 +54,14 @@ public class PillControl : MonoBehaviour
     {
         if(pillCount == 0)
             return;
-        rectTranform.localScale = new Vector3(1.1f, 1.1f, 1f);
+        iconRectTranform.localScale = new Vector3(1.1f, 1.1f, 1f);
     }
 
     public void PointerLeave()
     {
         if(pillCount == 0)
             return;
-        rectTranform.localScale = new Vector3(1f, 1f, 1f);
+        iconRectTranform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void PointerClick()
