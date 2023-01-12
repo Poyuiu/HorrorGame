@@ -15,11 +15,8 @@ public class passwordDoor : MonoBehaviour {
     [SerializeField] private GameObject FPSController;
 	[SerializeField] private List<GameObject> numberWithGrayFilter;
 	private string password;
-	//private TMP_Text passwordText;
-	private const string passwordTextPrefix = "<mspace=1.47em>";
-	private const string correctPassword = "9487";
+    private const string correctPassword = "9487";
 	private bool isDoorOpen;
-	private int rotateTimes;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -29,7 +26,6 @@ public class passwordDoor : MonoBehaviour {
 		//this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
 		this.password = "";
 		//this.passwordText.text = passwordTextPrefix;
-		this.rotateTimes = 0;
 
         Transform t = canvas.transform;
         foreach (Transform tr in t)
@@ -69,6 +65,7 @@ public class passwordDoor : MonoBehaviour {
             return;
         Cursor.visible = true;
         this.canvas.SetActive(true);
+        this.FPSController.GetComponent<FPController>().turnOffSound();
         this.FPSController.GetComponent<FPController>().enabled = false;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);

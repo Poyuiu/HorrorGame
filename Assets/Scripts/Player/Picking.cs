@@ -60,7 +60,7 @@ public class Picking : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Door"))
         {
-            other.gameObject.transform.Find("Hints").gameObject.SetActive(true);
+            other.gameObject.transform.Find("Hints")?.gameObject.SetActive(true);
         }
         else if (other.gameObject.CompareTag("Diary"))
         {
@@ -115,7 +115,7 @@ public class Picking : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Door"))
         {
-            other.gameObject.transform.Find("Hints").gameObject.SetActive(false);
+            other.gameObject.transform.Find("Hints")?.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Diary"))
         {

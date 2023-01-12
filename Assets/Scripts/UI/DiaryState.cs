@@ -27,9 +27,14 @@ public class DiaryState : MonoBehaviour
     public void PickUpDiaryPage(int i)
     {
         pageState[i] = true;
+        StartCoroutine(DiaryPickHint());
     }
     public bool IfPageCanBeShow(int p)
     {
         return pageState[p];
+    }
+    public IEnumerator DiaryPickHint()
+    {
+        yield return new WaitForSeconds(2.5f);
     }
 }
