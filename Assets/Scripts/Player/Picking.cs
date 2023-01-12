@@ -34,7 +34,7 @@ public class Picking : MonoBehaviour
             if (sanity == 0)
             {
                 sanity = 2;
-                StartCoroutine(loader.ChangeScene());
+                loader.darkWorldCoroutine = StartCoroutine(loader.ChangeScene());
             }
             SanityEffect.enabled = false;
         }
