@@ -128,4 +128,10 @@ public class FPController : MonoBehaviour {
 	{
 		this.dead = false;
 	}
+
+	public void turnOffSound()
+	{
+		AS_Footstep.Stop();
+		AS_Breath.Stop();
+	}
 }

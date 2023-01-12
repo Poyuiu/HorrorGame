@@ -65,6 +65,7 @@ public class passwordDoor : MonoBehaviour {
             return;
         Cursor.visible = true;
         this.canvas.SetActive(true);
+        this.FPSController.GetComponent<FPController>().turnOffSound();
         this.FPSController.GetComponent<FPController>().enabled = false;
         this.FPSController.GetComponent<LidarProject.Scanner>().enabled = false;
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);

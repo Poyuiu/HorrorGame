@@ -12,6 +12,7 @@ public class leverScript : MonoBehaviour
     public bool Locked = false;
     [Tooltip("The door for remote control")]
     public DoorScript DoorObject;
+    public DoorScript BackwardDoorObject;
     [Space]
     [Tooltip("Any object for ramp/elevator baheviour")]
     public Transform RampObject;
@@ -53,6 +54,7 @@ public class leverScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && !isValve && DoorObject != null && NearView()) // 1.lever and 2.button
             {
                 DoorObject.openDoor(); // void in door script to open/close
+                BackwardDoorObject.openDoor(); // void in door script to open/close
                 if (isLever) // animations
                 {
                     if (DoorObject.isOpened) anim.SetBool("LeverUp", true);
