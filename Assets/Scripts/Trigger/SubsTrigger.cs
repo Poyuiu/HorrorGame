@@ -20,13 +20,14 @@ public class SubsTrigger : MonoBehaviour
         {
             //Debug.Log("Collid");
             oneTime = false;
-            Vocals.instance.Say(clip);
-            StartCoroutine(DisplayFlashlightHint());
+
+            StartCoroutine(DisplayStartUpSubs());
         }
     }
 
-    IEnumerator DisplayFlashlightHint()
+    IEnumerator DisplayStartUpSubs()
     {
+        Vocals.instance.Say(clip);
         yield return new WaitForSeconds(2.5f);
         Vocals.instance.Say(forNull);
     }
