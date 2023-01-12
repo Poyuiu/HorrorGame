@@ -17,6 +17,7 @@ TagManager:
   - Fragment
   - Door
   - Diary
+  - BlackBoard
   layers:
   - Default
   - TransparentFX

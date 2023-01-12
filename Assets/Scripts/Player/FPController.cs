@@ -42,15 +42,20 @@ public class FPController : MonoBehaviour
         defaultYpos = cam.transform.localPosition.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        if (dead)
-        {
-            AS_Footstep.Stop();
-            AS_Breath.Stop();
-            return;
-        }
+        AS_Breath.Stop();
+		AS_Footstep.Stop();
+    }
+
+    // Update is called once per frame
+    void Update () {
+		if (dead)
+		{
+			AS_Footstep.Stop();
+			AS_Breath.Stop();
+			return;
+		}
 
         rotationLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0, rotationLeftRight, 0);
