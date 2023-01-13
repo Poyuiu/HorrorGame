@@ -8,11 +8,12 @@ public class sceneManager : MonoBehaviour
     public GameObject focusOn;
     public float Speed = 1;
     public float desiredTime1 = 5.0f;
-    public float desiredTime2 = 10.0f;
+    public float desiredTime2 = 16.0f;
     private float timer = 0;
 
     void Start() {
-
+        desiredTime1 = 6.0f;
+        desiredTime2 = 15f;
     }
     void Update()
     {
@@ -23,7 +24,7 @@ public class sceneManager : MonoBehaviour
         }
         if (timer >= desiredTime2)
         {
-            SceneManager.LoadScene("stage1");
+            SceneManager.LoadScene("Menu");
         }
     }
 
