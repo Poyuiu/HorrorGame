@@ -27,12 +27,14 @@ public class SceneLoader : MonoBehaviour
     public gameState curGameState;
 
     //private bool nowIsLight;
-
+    private bool firstIntoDark;
+    public AudioClip forNull;
     private void Start()
     {
         //nowIsLight = true;
         curGameState = gameState.Stage1;
         showUI = ui.GetComponent<ShowUI>();
+        firstIntoDark = true;
     }
 
     private void Update()
@@ -60,6 +62,11 @@ public class SceneLoader : MonoBehaviour
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(1f);
 
+        if (firstIntoDark)
+        {
+            firstIntoDark = false;
+            Vocals.instance.Say(forNull, 15);
+        }
         // In the Dark
         if (curGameState == gameState.Stage2)
         {

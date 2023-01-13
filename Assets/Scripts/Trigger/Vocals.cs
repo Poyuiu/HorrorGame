@@ -68,6 +68,10 @@ public class Vocals : MonoBehaviour
             "Argh, my head is so pained.",
             //14
             "Hope that the jar of pills were painkillers.",
+            //15
+            hint_pre +
+            "(Press Left Mouse or R)"+
+            hint_post,
         };
         subsKeepingTime = new List<float>
         {
@@ -101,12 +105,18 @@ public class Vocals : MonoBehaviour
             2f,
             //14
             2.5f,
+            //15
+            2f,
         };
     }
     private void Update()
     {
         if (cur_sub_index == 6 && Input.GetKeyDown(KeyCode.Tab)) cont = true;
         if (cur_sub_index == 7 && Input.GetMouseButtonDown(1)) cont = true;
+        if(cur_sub_index == 15 &&
+            (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.R))){
+            cont = true;
+        }
     }
 
     public void Say(AudioClip clip, int _cur_sub_index)
@@ -137,7 +147,7 @@ public class Vocals : MonoBehaviour
             + mark_key_word_post
             );
 
-        if (cur_sub_index == 6 || cur_sub_index == 7)
+        if (cur_sub_index == 6 || cur_sub_index == 7 || cur_sub_index == 15)
         {
             yield return new WaitUntil(() => cont);
         }
