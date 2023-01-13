@@ -58,7 +58,7 @@ public class Picking : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Newspaper"))
         {
-            other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+            other.gameObject.transform.Find("Hints")?.gameObject.SetActive(true);
         }
         else if (other.gameObject.CompareTag("Lever"))
         {
@@ -123,7 +123,7 @@ public class Picking : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Newspaper"))
         {
-            other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            other.gameObject.transform.Find("Hints")?.gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Lever"))
         {

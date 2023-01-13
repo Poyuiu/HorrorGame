@@ -31,7 +31,7 @@ public class SubsTrig1 : MonoBehaviour
     IEnumerator DisplayStartUpSubs()
     {
         Vocals.instance.Say(clip0, 0);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(5.0f);
         Vocals.instance.Say(clip1, 1);
         yield return new WaitForSeconds(2f);
         Vocals.instance.Say(clip2, 2);
