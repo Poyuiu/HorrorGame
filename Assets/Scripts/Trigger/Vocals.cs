@@ -125,46 +125,43 @@ public class Vocals : MonoBehaviour
 
     public void Say(AudioClip clip, int _cur_sub_index)
     {
-        if (source.isPlaying)
-            source.Stop();
-
-        source.PlayOneShot(clip);
-
         cur_sub_index = _cur_sub_index;
         if (cur_sub_index >= subtitles.Count)
             return;
 
         this.cont = false;
-        StartCoroutine(SubsDisplay());
+        StartCoroutine(SubsDisplay(clip));
     }
 
-    IEnumerator SubsDisplay()
+    IEnumerator SubsDisplay(AudioClip clip)
     {
         if (cur_sub_index <= 6)
             fPController.LockMove();
+        if (cur_sub_index == 0)
+            yield return new WaitForSeconds(2.5f);
 
-        //if (cur_sub_index == 7)
-        //    Debug.Log(cur_sub_index.ToString() + ": " + cont.ToString());
         Subs.instance.SetSubtitle(
             mark_key_word_pre
             + subtitles[cur_sub_index]
             + mark_key_word_post
             );
 
+        if (source.isPlaying)
+            source.Stop();
+
+        source.PlayOneShot(clip);
+
         if (cur_sub_index == 6 || cur_sub_index == 7 || cur_sub_index == 15)
         {
             yield return new WaitUntil(() => cont);
         }
-        //if (cur_sub_index == 6)
-        //    Debug.Log(cur_sub_index.ToString()+ ": " +cont.ToString());
+
         yield return new WaitForSeconds(subsKeepingTime[cur_sub_index]);
 
         if (cur_sub_index <= 6)
             fPController.UnlockMove();
 
-        //cur_sub_index += 1;
         subs.ClearSubtitile();
-
     }
 
 }

@@ -7,6 +7,7 @@ public class BoardUI : MonoBehaviour, IDropHandler
 {
     [SerializeField] private GameObject realNewspapers1, realNewspapers2, realNewspapers3, realNewspapers4;
     [SerializeField] private GameObject[] UINewspaper = new GameObject[5];
+    [SerializeField] private GameObject[] slots = new GameObject[5];
     [SerializeField] private BlackBoard realBlackBoard;
     private bool[] newspaperPicked = new bool[5] { false, false, false, false, false};
 
@@ -34,18 +35,22 @@ public class BoardUI : MonoBehaviour, IDropHandler
                 case 1:
                     newspaper.startPos = new Vector2(-584 + 960, 0 + 540);
                     realNewspapers1.SetActive(true);
+                    slots[1].SetActive(false);
                     break;
                 case 2:
                     newspaper.startPos = new Vector2(-166 + 960, -239 + 540);
                     realNewspapers2.SetActive(true);
+                    slots[2].SetActive(false);
                     break; 
                 case 3:
                     newspaper.startPos = new Vector2(200 + 960, 36 + 540);
                     realNewspapers3.SetActive(true);
+                    slots[3].SetActive(false);
                     break;
                 case 4:
                     newspaper.startPos = new Vector2(615 + 960, -129 + 540);
                     realNewspapers4.SetActive(true);
+                    slots[4].SetActive(false);
                     break;
                 default:
                     return;
