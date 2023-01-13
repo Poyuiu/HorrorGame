@@ -6,6 +6,7 @@ public class AwakeVocals : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip endsub0;
+    public AudioClip endswitch;
     public static AwakeVocals instance;
 
 
@@ -43,6 +44,8 @@ public class AwakeVocals : MonoBehaviour
 
     IEnumerator SubsDisplay()
     {
+        yield return new WaitForSeconds(0.1f);
+        source.PlayOneShot(endswitch);
         yield return new WaitForSeconds(2.5f);
         subs.SetSubtitle(
             mark_key_word_pre
