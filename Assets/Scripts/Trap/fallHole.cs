@@ -39,6 +39,7 @@ public class fallHole : MonoBehaviour {
 			loader.fadingEffect();
 			yield return new WaitForSeconds(0.8f);
 		}
+		this.zombieAnimator.SetBool("isScare", false);
 		this.setPlayerState(true);
 	}
 	IEnumerator fallHoleTeleportWithoutScare() {
