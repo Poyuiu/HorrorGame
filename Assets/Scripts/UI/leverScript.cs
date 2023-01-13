@@ -106,7 +106,7 @@ public class leverScript : MonoBehaviour
         distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         direction = transform.position - Camera.main.transform.position;
         angleView = Vector3.Angle(Camera.main.transform.forward, direction);
-        if (angleView < 45f && distance < 2f) return true;
+        if (angleView < 45f && distance < 4f) return true;
         else return false;
     }
 }

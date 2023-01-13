@@ -60,7 +60,7 @@ public class BoardUI : MonoBehaviour, IDropHandler
         }
         if (rectTransform != null)
         {
-            rectTransform.sizeDelta = new Vector2(400, 400);
+            rectTransform.sizeDelta = new Vector2(450, 450);
         }
         newspaper.canDrag = false;
     }

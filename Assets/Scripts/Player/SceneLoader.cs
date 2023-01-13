@@ -31,6 +31,7 @@ public class SceneLoader : MonoBehaviour {
     //private bool nowIsLight;
 
     private bool firstIntoDark;
+    public bool isInDark = false;
     public AudioClip forNull;
     private void Start()
     {
@@ -43,7 +44,7 @@ public class SceneLoader : MonoBehaviour {
     private void Update() {
         // Demo
         if (Input.GetKeyDown(KeyCode.P)) {
-            if (this.darkWorldCoroutine == null)
+            if (!isInDark)
                 this.darkWorldCoroutine = StartCoroutine(ChangeScene());
             else
                 StartCoroutine(forceEndDarkWorld());
@@ -61,6 +62,7 @@ public class SceneLoader : MonoBehaviour {
     }
 
     public IEnumerator ChangeScene() {
+        isInDark = true;
         showUI.EnabledUI(false);
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(0.5f);
@@ -88,7 +90,7 @@ public class SceneLoader : MonoBehaviour {
         }
 
         // End Dark
-
+        isInDark = false;
         showUI.EnabledUI(true);
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(0.5f);
@@ -105,6 +107,8 @@ public class SceneLoader : MonoBehaviour {
     public IEnumerator forceEndDarkWorld() {
         StopCoroutine(this.darkWorldCoroutine);
         this.darkWorldCoroutine = null;
+        isInDark = false;
+        showUI.EnabledUI(true);
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(0.5f);
 
@@ -145,7 +149,9 @@ public class SceneLoader : MonoBehaviour {
                 }
         }
     }
-    public void InToTheDark() {
-        StartCoroutine(ChangeScene());
+    public void InToTheDark()
+    {
+        if (!isInDark)
+            this.darkWorldCoroutine = StartCoroutine(ChangeScene());
     }
 }

@@ -9,7 +9,7 @@ public class BlackBoard : UI
     [SerializeField] private DoorScript door;
 
 
-    private GameObject[] newspapers;
+    private GameObject[] newspapers, slots;
     private bool[] hasNewspaper;
     private GameObject hint;
 
@@ -17,11 +17,13 @@ public class BlackBoard : UI
     void Awake()
     {
         newspapers = new GameObject[5];
+        slots = new GameObject[5];
         hasNewspaper= new bool[5];
         hint = transform.Find("Hints").gameObject;
         for (int i = 1; i <= 4; i++)
         {
             newspapers[i] = transform.Find("Newspaper" + i).gameObject;
+            slots[i] = transform.Find("Slot" + i).gameObject;
             hasNewspaper[i] = false;
         }
     }
@@ -47,7 +49,7 @@ public class BlackBoard : UI
         float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
         Vector3 direction = transform.position - Camera.main.transform.position;
         float angleView = Vector3.Angle(Camera.main.transform.forward, direction);
-        if (angleView < 60f && distance < 3f) return true;
+        if (angleView < 60f && distance < 4f) return true;
         else return false;
     }
     public void OpenCanvas()
@@ -73,6 +75,7 @@ public class BlackBoard : UI
     public void showNewspaper(uint newspaperNum)
     {
         newspapers[newspaperNum].SetActive(true);
+        slots[newspaperNum].SetActive(false);
         hasNewspaper[newspaperNum] = true;
         bool allPlaced = true;
         for (int i = 1; i <= 4; i++)

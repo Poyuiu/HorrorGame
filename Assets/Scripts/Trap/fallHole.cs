@@ -10,11 +10,13 @@ public class fallHole : MonoBehaviour {
 	[SerializeField] private Light roomLight;
 	[SerializeField] private GameObject zombie;
 	[SerializeField] private SceneLoader loader;
-	private bool isEnter;
+	private bool isEnter, entering;
 	private void Start() {
 		this.isEnter = false;
+		this.entering = false;
 	}
 	IEnumerator fallHoleTeleport() {
+		entering = true;
 		this.zombieAnimator.SetBool("isScare", true);
 		yield return new WaitForSeconds(0.2f);
 		this.setPlayerState(false);
@@ -26,10 +28,9 @@ public class fallHole : MonoBehaviour {
 		yield return new WaitForSeconds(0.1f);
 		this.zombie.GetComponent<AudioSource>().Play();
 		yield return new WaitForSeconds(0.4f);
-		this.isEnter = true;
 		yield return new WaitForSeconds(1.1f);
 		
-		if (loader.darkWorldCoroutine != null)
+		if (loader.isInDark)
 			StartCoroutine(loader.forceEndDarkWorld());
 		else {
 			loader.fadingEffect();
@@ -42,9 +43,11 @@ public class fallHole : MonoBehaviour {
 		}
 		this.zombieAnimator.SetBool("isScare", false);
 		this.setPlayerState(true);
+		entering = false;
 	}
 	IEnumerator fallHoleTeleportWithoutScare() {
-		if (loader.darkWorldCoroutine != null)
+		entering = true;
+		if (loader.isInDark)
 			StartCoroutine(loader.forceEndDarkWorld());
 		else {
 			loader.fadingEffect();
@@ -56,6 +59,7 @@ public class fallHole : MonoBehaviour {
 			yield return new WaitForSeconds(0.8f);
 			this.setPlayerState(true);
 		}
+		entering = false;
 	}
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.M))
@@ -75,9 +79,12 @@ public class fallHole : MonoBehaviour {
 			roomLight.intensity += 0.02f;
 	}
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "PlayerFake") {
+		if (other.tag == "PlayerFake" && !entering) {
 			if (!this.isEnter)
+			{
+				this.isEnter = true;
 				StartCoroutine(this.fallHoleTeleport());
+			}
 			else
 				StartCoroutine(this.fallHoleTeleportWithoutScare());
 		}
