@@ -100,7 +100,6 @@ public class SceneLoader : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         this.timelineInstantiation.SetActive(false);
         Destroy(this.timelineInstantiation);
-        this.spawnPill();
     }
 
     public IEnumerator forceEndDarkWorld() {
@@ -116,8 +115,6 @@ public class SceneLoader : MonoBehaviour {
         this.timelineInstantiation.SetActive(false);
         Destroy(this.timelineInstantiation);
         yield return new WaitForSeconds(0.5f);
-        this.spawnPill();
-
     }
     public void fadingEffect() => animator.SetTrigger("FadingStart");
     // true for normal world / false for dark world
@@ -127,14 +124,6 @@ public class SceneLoader : MonoBehaviour {
         darkWorld.SetActive(!state);
         flashlight.SetActive(state);
         scanner.SetActive(!state);
-    }
-    private void spawnPill() {
-        Instantiate(pills,
-                    new Vector3(25.3419991f, -6.86999989f, -3.16000009f),
-                    Quaternion.identity);
-        Instantiate(pills,
-            new Vector3(31.6704674f, -2.19000006f, -7.05183172f),
-            Quaternion.identity);
     }
 
     public void changeGameState(gameState newValue) {
