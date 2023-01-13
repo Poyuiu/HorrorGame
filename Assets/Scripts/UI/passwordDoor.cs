@@ -19,7 +19,7 @@ public class passwordDoor : UI
     private const string correctPassword = "9487";
     private bool isDoorOpen;
 
-    private bool firstClose;
+    private bool fc;
     public AudioClip sub11;
     public AudioClip sub12;
     public AudioClip sub13;
@@ -45,7 +45,7 @@ public class passwordDoor : UI
             }
         }
 
-        firstClose = true;
+        fc = true;
     }
     // Update is called once per frame
     void Update()
@@ -102,9 +102,9 @@ public class passwordDoor : UI
         this.canvas.SetActive(false);
         StartCoroutine(ForMouseClose());
 
-        if (firstClose)
+        if (fc)
         {
-            firstClose = false;
+            fc = false;
             StartCoroutine(FirstCloseDoor());
         }
     }
