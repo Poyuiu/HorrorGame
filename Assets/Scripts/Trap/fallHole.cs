@@ -35,6 +35,7 @@ public class fallHole : MonoBehaviour {
 			loader.fadingEffect();
 			yield return new WaitForSeconds(0.5f);
             this.player.GetComponent<PlayerSave>().changePos(1);
+			GameObject.Find("FloorCollapseEvent").GetComponent<FloorCollapse>().respawnFloor();
 			this.player.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
 			loader.fadingEffect();
 			yield return new WaitForSeconds(0.8f);
@@ -50,6 +51,7 @@ public class fallHole : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 			this.setPlayerState(false);
 			this.player.GetComponent<PlayerSave>().changePos(1);
+			GameObject.Find("FloorCollapseEvent").GetComponent<FloorCollapse>().respawnFloor();
 			loader.fadingEffect();
 			yield return new WaitForSeconds(0.8f);
 			this.setPlayerState(true);

@@ -72,6 +72,8 @@ public class Vocals : MonoBehaviour
             hint_pre +
             "(Press Left Mouse or R)"+
             hint_post,
+            //16
+            "Why can't the door be opened?"
         };
         subsKeepingTime = new List<float>
         {
@@ -106,6 +108,8 @@ public class Vocals : MonoBehaviour
             //14
             2.5f,
             //15
+            2f,
+            //16
             2f,
         };
     }
