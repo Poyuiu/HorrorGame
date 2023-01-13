@@ -45,18 +45,19 @@ public class FPController : MonoBehaviour
     private void OnDisable()
     {
         AS_Breath.Stop();
-		AS_Footstep.Stop();
+        AS_Footstep.Stop();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         //Debug.Log(lockMove);
-		if (dead)
-		{
-			AS_Footstep.Stop();
-			AS_Breath.Stop();
-			return;
-		}
+        if (dead)
+        {
+            AS_Footstep.Stop();
+            AS_Breath.Stop();
+            return;
+        }
 
         rotationLeftRight = Input.GetAxis("Mouse X") * mouseSensitivity;
         transform.Rotate(0, rotationLeftRight, 0);
@@ -148,6 +149,7 @@ public class FPController : MonoBehaviour
     public void LockMove()
     {
         this.AS_Footstep.Stop();
+        this.AS_Breath.Stop();
         this.lockMove = true;
     }
 
