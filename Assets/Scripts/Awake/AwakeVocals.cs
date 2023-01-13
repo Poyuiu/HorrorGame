@@ -44,7 +44,7 @@ public class AwakeVocals : MonoBehaviour
 
     IEnumerator SubsDisplay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2.1f);
         source.PlayOneShot(endswitch);
         yield return new WaitForSeconds(2.5f);
         subs.SetSubtitle(

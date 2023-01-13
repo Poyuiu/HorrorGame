@@ -12,8 +12,8 @@ public class sceneManager : MonoBehaviour
     private float timer = 0;
 
     void Start() {
-        desiredTime1 = 6.0f;
-        desiredTime2 = 15f;
+        desiredTime1 = 8.0f;
+        desiredTime2 = 18f;
     }
     void Update()
     {
