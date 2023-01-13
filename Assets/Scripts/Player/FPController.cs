@@ -50,6 +50,7 @@ public class FPController : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
+        //Debug.Log(lockMove);
 		if (dead)
 		{
 			AS_Footstep.Stop();

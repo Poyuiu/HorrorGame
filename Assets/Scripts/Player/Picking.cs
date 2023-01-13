@@ -15,13 +15,20 @@ public class Picking : MonoBehaviour
     private bool canPickDiary;
     private bool goPickDiary;
     public bool leverHint = false;
+
+    private bool encounterFirstMedicine;
+    public AudioClip sub8;
+    public AudioClip sub9;
+
     private void Start()
     {
         pillControl = PillControler.GetComponent<PillControl>();
         sanLock = false;
         canPickPill = false;
-        canPickDiary = false;
+        canPickDiary = true;
         goPickDiary = false;
+
+        encounterFirstMedicine = true;
     }
 
     private void Update()
@@ -53,8 +60,10 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
         }
-        else if (other.gameObject.CompareTag("Lever")) {
-            if (leverHint) {
+        else if (other.gameObject.CompareTag("Lever"))
+        {
+            if (leverHint)
+            {
                 other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
@@ -66,7 +75,7 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(true);
             canPickDiary = true;
-        } 
+        }
         else if (other.gameObject.CompareTag("BlackBoard"))
         {
             other.gameObject.transform.Find("Hints").gameObject.SetActive(true);
@@ -83,11 +92,17 @@ public class Picking : MonoBehaviour
                 sanLock = false;
                 canPickPill = false;
                 // hints_1.enabled = false;
+                if (encounterFirstMedicine)
+                {
+                    encounterFirstMedicine = false;
+                    StartCoroutine(EncounterFirstMedicine());
+                }
                 other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
             }
-        } if (other.gameObject.CompareTag("Diary"))
+        }
+        if (other.gameObject.CompareTag("Diary"))
         {
-            if(goPickDiary)
+            if (goPickDiary)
             {
                 other.gameObject.GetComponent<DiaryPageControl>().Pick();
                 goPickDiary = false;
@@ -110,7 +125,8 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
-        else if (other.gameObject.CompareTag("Lever")) {
+        else if (other.gameObject.CompareTag("Lever"))
+        {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         }
         else if (other.gameObject.CompareTag("Door"))
@@ -126,5 +142,12 @@ public class Picking : MonoBehaviour
         {
             other.gameObject.transform.Find("Hints").gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator EncounterFirstMedicine()
+    {
+        Vocals.instance.Say(sub8, 8);
+        yield return new WaitForSeconds(2f);
+        Vocals.instance.Say(sub9, 9);
     }
 }

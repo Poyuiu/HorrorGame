@@ -3,29 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class passwordDoor : UI {
-	[SerializeField] private GameObject canvas;
-	//[SerializeField] private GameObject passwordTextObj;
-	[SerializeField] private GameObject door1;
-	[SerializeField] private GameObject door2;
-	[SerializeField] private GameObject dark_door1;
-	[SerializeField] private GameObject dark_door2;
+public class passwordDoor : UI
+{
+    [SerializeField] private GameObject canvas;
+    //[SerializeField] private GameObject passwordTextObj;
+    [SerializeField] private GameObject door1;
+    [SerializeField] private GameObject door2;
+    [SerializeField] private GameObject dark_door1;
+    [SerializeField] private GameObject dark_door2;
     [SerializeField] public DoorScript door;
     [SerializeField] private GameObject hint;
     [SerializeField] private GameObject FPSController;
-	[SerializeField] private List<GameObject> numberWithGrayFilter;
-	private string password;
+    [SerializeField] private List<GameObject> numberWithGrayFilter;
+    private string password;
     private const string correctPassword = "9487";
-	private bool isDoorOpen;
+    private bool isDoorOpen;
 
-	// Start is called before the first frame update
-	void Start() {
+
+    // Start is called before the first frame update
+    void Start()
+    {
         if (FPSController.GetComponent<PlayerSave>().nowSP >= 1)
             Destroy(this.gameObject);
-		this.isDoorOpen = false;
-		//this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
-		this.password = "";
-		//this.passwordText.text = passwordTextPrefix;
+        this.isDoorOpen = false;
+        //this.passwordText = this.passwordTextObj.GetComponent<TMP_Text>();
+        this.password = "";
+        //this.passwordText.text = passwordTextPrefix;
 
         Transform t = canvas.transform;
         foreach (Transform tr in t)
@@ -35,6 +38,7 @@ public class passwordDoor : UI {
                 numberWithGrayFilter.Add(tr.gameObject);
             }
         }
+
     }
     // Update is called once per frame
     void Update()
@@ -53,7 +57,7 @@ public class passwordDoor : UI {
             if (isOpened) CloseCanvas();
         }
     }
-    
+
     bool NearView()
     {
         float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
@@ -76,7 +80,7 @@ public class passwordDoor : UI {
     }
     public void CloseCanvas()
     {
-        isOpened= false;
+        isOpened = false;
         if (this.password != correctPassword)
         {
             for (int i = 0; i < 10; i++)
@@ -90,11 +94,28 @@ public class passwordDoor : UI {
         this.FPSController.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         this.canvas.SetActive(false);
         StartCoroutine(ForMouseClose());
+
+        //if (firstClose)
+        //{
+        //    firstClose = false;
+        //    StartCoroutine(FirstCloseDoor());
+        //}
     }
     public IEnumerator ForMouseClose()
     {
         yield return new WaitForSeconds(0.2f);
     }
+    //public IEnumerator FirstCloseDoor()
+    //{
+    //    Vocals.instance.Say(sub11, 11);
+    //    yield return new WaitForSeconds(2f);
+    //    Vocals.instance.Say(sub12, 12);
+    //    yield return new WaitForSeconds(1.5f);
+    //    Vocals.instance.Say(sub13, 13);
+    //    yield return new WaitForSeconds(2f);
+    //    Vocals.instance.Say(sub14, 14);
+    //    yield return new WaitForSeconds(2.5f);
+    //}
     public void addZero()
     {
         if (this.password.Length < 4)
@@ -192,6 +213,7 @@ public class passwordDoor : UI {
         Destroy(this.gameObject.GetComponent<MeshRenderer>());
         Destroy(this.canvas, 0.5f);
         Destroy(this.gameObject, 2f);
+        //this.firstClose = false;
         this.CloseCanvas();
     }
     void FixedUpdate()

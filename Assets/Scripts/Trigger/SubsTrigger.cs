@@ -27,8 +27,8 @@ public class SubsTrigger : MonoBehaviour
 
     IEnumerator DisplayStartUpSubs()
     {
-        Vocals.instance.Say(clip);
+        Vocals.instance.Say(clip, 0);
         yield return new WaitForSeconds(2.5f);
-        Vocals.instance.Say(forNull);
+        Vocals.instance.Say(forNull, 0);
     }
 }
