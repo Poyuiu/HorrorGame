@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerScript : MonoBehaviour
 {
     public SceneLoader SceneLoaderScript;
-    public SceneLoader.gameState targetGameState;
+    public SceneLoader.GameState targetGameState;
     // Start is called before the first frame update
     void Start()
     {

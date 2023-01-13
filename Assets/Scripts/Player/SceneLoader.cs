@@ -23,8 +23,8 @@ public class SceneLoader : MonoBehaviour
     public GameObject ui;
     ShowUI showUI;
 
-    public enum gameState {Stage1, Stage2, Stage3, Stage3_1};
-    public gameState curGameState;
+    public enum GameState {Stage1, Stage2, Stage3, Stage3_1};
+    public GameState curGameState;
 
     //private bool nowIsLight;
     private bool firstIntoDark;
@@ -32,7 +32,7 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         //nowIsLight = true;
-        curGameState = gameState.Stage1;
+        curGameState = GameState.Stage1;
         showUI = ui.GetComponent<ShowUI>();
         firstIntoDark = true;
     }
@@ -68,12 +68,12 @@ public class SceneLoader : MonoBehaviour
             Vocals.instance.Say(forNull, 15);
         }
         // In the Dark
-        if (curGameState == gameState.Stage2)
+        if (curGameState == GameState.Stage2)
         {
-            yield return new WaitUntil(() => curGameState == gameState.Stage3);
+            yield return new WaitUntil(() => curGameState == GameState.Stage3);
         }
-        else if (curGameState == gameState.Stage3) {
-            yield return new WaitUntil(() => curGameState == gameState.Stage3_1);
+        else if (curGameState == GameState.Stage3) {
+            yield return new WaitUntil(() => curGameState == GameState.Stage3_1);
 
         } else {
             Instantiate(timeLine);
@@ -98,20 +98,20 @@ public class SceneLoader : MonoBehaviour
         showUI.EnabledUI(true);
     }
 
-    public void changeGameState(gameState newValue) {
+    public void changeGameState(GameState newValue) {
         if (newValue <= curGameState) return;
         curGameState = newValue;
         switch(curGameState) {
-            case gameState.Stage2:
+            case GameState.Stage2:
             {
                 walkingZombie.is_walking = true;
                 break;
             }
-            case gameState.Stage3: {
+            case GameState.Stage3: {
                 stage3Doors.closeDoor();
                 break;
             }
-            case gameState.Stage3_1: {
+            case GameState.Stage3_1: {
                 player.GetComponent<Picking>().leverHint = true;
                 stage3FloorMeshRenderer.material = stage3FloorMaterialBIG;
                 break;
