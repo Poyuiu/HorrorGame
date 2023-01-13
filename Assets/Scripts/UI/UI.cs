@@ -5,6 +5,8 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     protected bool isOpened = false;
+
+    private bool firstClose;
     // Start is called before the first frame update
     void Start()
     {
