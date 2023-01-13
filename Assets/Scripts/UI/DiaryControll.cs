@@ -15,7 +15,7 @@ public class DiaryControll : MonoBehaviour
     int nowInPage;
     int maxPage;
     int minPage;
-    public GameObject[] pageList;
+    public GameObject[] pageList, blankPageList;
     void Start() {
         diaryState = diaryPickSys.GetComponent<DiaryState>();
         maxPage = diaryState.maxPage;
@@ -29,10 +29,13 @@ public class DiaryControll : MonoBehaviour
     {
         if(diaryState.IfPageCanBeShow(p))
             pageList[p].SetActive(true);
+        else
+            blankPageList[p].SetActive(true);
     }
     private void HideAPage(int p)
     {
         pageList[p].SetActive(false);
+        blankPageList[p].SetActive(false);
     }
     public void ShowRightCorner()
     {
