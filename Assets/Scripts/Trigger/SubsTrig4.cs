@@ -20,7 +20,7 @@ public class SubsTrig4 : MonoBehaviour
             //Debug.Log("Collid");
             oneTime = false;
 
-            Vocals.instance.Say(sub16, 10);
+            Vocals.instance.Say(sub16, 16);
         }
     }
 }
