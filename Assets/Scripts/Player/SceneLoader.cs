@@ -109,6 +109,7 @@ public class SceneLoader : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         this.setWorldObjectState(true);
+        GameObject.Find("FloorCollapseEvent").GetComponent<FloorCollapse>().respawnFloor();
         this.player.GetComponent<PlayerSave>().changePos(1);
         animator.SetTrigger("FadingStart");
         this.timelineInstantiation.SetActive(false);
