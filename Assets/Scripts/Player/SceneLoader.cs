@@ -89,6 +89,7 @@ public class SceneLoader : MonoBehaviour {
 
         // End Dark
 
+        showUI.EnabledUI(true);
         animator.SetTrigger("FadingStart");
         yield return new WaitForSeconds(0.5f);
 
