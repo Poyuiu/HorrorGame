@@ -19,6 +19,12 @@ public class passwordDoor : UI
     private const string correctPassword = "9487";
     private bool isDoorOpen;
 
+    private bool firstClose;
+    public AudioClip sub11;
+    public AudioClip sub12;
+    public AudioClip sub13;
+    public AudioClip sub14;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,7 @@ public class passwordDoor : UI
             }
         }
 
+        firstClose = true;
     }
     // Update is called once per frame
     void Update()
@@ -95,27 +102,27 @@ public class passwordDoor : UI
         this.canvas.SetActive(false);
         StartCoroutine(ForMouseClose());
 
-        //if (firstClose)
-        //{
-        //    firstClose = false;
-        //    StartCoroutine(FirstCloseDoor());
-        //}
+        if (firstClose)
+        {
+            firstClose = false;
+            StartCoroutine(FirstCloseDoor());
+        }
     }
     public IEnumerator ForMouseClose()
     {
         yield return new WaitForSeconds(0.2f);
     }
-    //public IEnumerator FirstCloseDoor()
-    //{
-    //    Vocals.instance.Say(sub11, 11);
-    //    yield return new WaitForSeconds(2f);
-    //    Vocals.instance.Say(sub12, 12);
-    //    yield return new WaitForSeconds(1.5f);
-    //    Vocals.instance.Say(sub13, 13);
-    //    yield return new WaitForSeconds(2f);
-    //    Vocals.instance.Say(sub14, 14);
-    //    yield return new WaitForSeconds(2.5f);
-    //}
+    public IEnumerator FirstCloseDoor()
+    {
+        Vocals.instance.Say(sub11, 11);
+        yield return new WaitForSeconds(2f);
+        Vocals.instance.Say(sub12, 12);
+        yield return new WaitForSeconds(1.5f);
+        Vocals.instance.Say(sub13, 13);
+        yield return new WaitForSeconds(2f);
+        Vocals.instance.Say(sub14, 14);
+        yield return new WaitForSeconds(2.5f);
+    }
     public void addZero()
     {
         if (this.password.Length < 4)

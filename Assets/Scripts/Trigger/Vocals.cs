@@ -60,14 +60,14 @@ public class Vocals : MonoBehaviour
             "Why is here?",
             //10
             "This place is getting spooky...",
-            ////11
-            //"Well, it's locked...",
-            ////12
-            //"But what's the password?",
-            ////13
-            //"Argh, my head is so pained.",
-            ////14
-            //"Hope that the jar of pills were painkillers.",
+            //11
+            "Well, it's locked...",
+            //12
+            "But what's the password?",
+            //13
+            "Argh, my head is so pained.",
+            //14
+            "Hope that the jar of pills were painkillers.",
         };
         subsKeepingTime = new List<float>
         {
@@ -93,14 +93,14 @@ public class Vocals : MonoBehaviour
             1f,
             //10
             2.5f,
-            ////11
-            //2f,
-            ////12
-            //1.5f,
-            ////13
-            //2f,
-            ////14
-            //2.5f,
+            //11
+            2f,
+            //12
+            1.5f,
+            //13
+            2f,
+            //14
+            2.5f,
         };
     }
     private void Update()
