@@ -7,6 +7,7 @@ public class SubsTrig4 : MonoBehaviour
     public AudioClip sub16;
 
     private bool oneTime;
+    [SerializeField] DoorScript door;
 
     private void Start()
     {
@@ -15,7 +16,7 @@ public class SubsTrig4 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && oneTime)
+        if (other.CompareTag("Player") && oneTime && !door.isOpened)
         {
             //Debug.Log("Collid");
             oneTime = false;
